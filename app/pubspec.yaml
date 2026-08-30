@@ -1,0 +1,23 @@
+name: marine_see
+description: MarineSee — Mati City seagrass education (Flutter, Android 8.0+).
+publish_to: "none"
+version: 1.0.0+1
+
+# Flutter 3.47.2 stable (install day).
+environment:
+  sdk: ^3.13.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  image_picker: ^1.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/data/species.json

@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.ipynb_checkpoints/
+
+# ML data and bulky artifacts
+data/raw/
+data/processed/
+data/images/
+*.jpg
+*.jpeg
+*.png
+*.tif
+*.tiff
+*.heic
+# keep docs/source and small assets; ignore dumps
+ml/artifacts/*.joblib
+ml/artifacts/*.pkl
+ml/artifacts/*.onnx
+ml/artifacts/*.pt
+ml/artifacts/*.h5
+
+# Android / Flutter (when app/ is generated)
+app/.gradle/
+app/.idea/
+app/local.properties
+app/**/build/
+app/**/captures/
+*.apk
+*.aab
+*.iml
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# OS / editors
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
