@@ -3,14 +3,17 @@ description: MarineSee — Mati City seagrass education (Flutter, Android 8.0+).
 publish_to: "none"
 version: 1.0.0+1
 
-# Flutter 3.47.2 stable (install day).
+# Flutter 3.47.2 stable (install day). Constraint relaxed to allow local 3.38.9 (Dart 3.10.8).
 environment:
-  sdk: ^3.13.2
+  sdk: ">=3.10.8 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   image_picker: ^1.2.1
+  http: ^1.5.0
+  video_player: ^2.10.0
+  wave: ^0.2.5
 
 dev_dependencies:
   flutter_test:
@@ -21,3 +24,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/data/species.json
+    - assets/images/logo.png
+    - assets/images/onboarding/
+    - assets/images/species/
+    - assets/models-3d/

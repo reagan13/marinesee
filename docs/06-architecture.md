@@ -58,7 +58,7 @@ Do not introduce YOLO, CNN, or a second species list unless the paper and `00-st
 |-------|---------|------------------------|
 | App toolkit | Flutter (locked 30 Aug 2026). Android 8+ APK. No emulator on this laptop. | See `16-flutter-audit-and-scaffold.md` |
 | Content store | Firebase (Firestore + Storage), MySQL + small API, or bundled JSON in the APK | **Bundled JSON + Firebase Storage for 3D** only if we need remote assets; otherwise bundle profiles in the APK for v1 |
-| Inference | On-device (ONNX / similar) vs small Python API | **OPEN** — Colab training is the same either way |
+| Inference | On-device (ONNX / similar) vs small Python API | **v1 = Python API** (`POST /api/v1/identify`). On-device later. |
 | Visitor accounts | Guest-only vs login | **Guest identify + library**; admin login only |
 
 When the team picks, update this file and `14-open-questions.md`.

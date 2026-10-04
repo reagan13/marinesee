@@ -18,7 +18,16 @@ data/images/
 *.tif
 *.tiff
 *.heic
+# Bundled UI photos (not the training dataset).
+!app/assets/images/
+!app/assets/images/**/*.jpg
+!app/assets/images/**/*.jpeg
+!app/assets/images/**/*.png
 # keep docs/source and small assets; ignore dumps
+assets/models-3d/_cycle_tmp/
+assets/models-3d/_probe/
+assets/models-3d/_source/
+*.raw
 ml/artifacts/*.joblib
 ml/artifacts/*.pkl
 ml/artifacts/*.onnx

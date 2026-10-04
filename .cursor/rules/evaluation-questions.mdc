@@ -1,0 +1,21 @@
+---
+description: Check MarineSee's 29 evaluation questions and the open gaps before changing the app
+alwaysApply: true
+---
+
+# Evaluation questions
+
+The questionnaire is fixed at 29 statements in `docs/MarineSee-Validation-Questions.txt`. Pass checks and statuses live in `docs/19-evaluation-question-spec.md`. Open work lives in `docs/20-evaluation-gaps.md`. Read both before changing `app/` or the evaluation docs.
+
+- Do not say the app will get a high user-evaluation score while any row is `not-met` or `unmeasured`.
+- Do not change the app so a `met` row becomes false (FS-1, FS-2, RE-3, RE-5, RE-6).
+- Restyling does not close a gap. These stay `not-met` until the pass check is true: FS-3, FS-4, FS-5, FS-6, FS-7, US-3, US-4, PE-4.
+- `FS-6` stays `not-met` while profile values are `TBD`. `FS-7` and `PE-4` stay `not-met` until a tester can rotate and zoom a model.
+- If a change affects a row, update that row's Status and Evidence in `19-evaluation-question-spec.md`, then update the lists and the snapshot line in `20-evaluation-gaps.md`, in the same edit.
+- Do not mark `met` from a code comment. A phone pass is required for the 16 `unmeasured` rows.
+- Do not add security or maintainability items to the user questionnaire.
+
+```text
+FS-7  not-met
+Evidence: viewer_3d_screen.dart still tells the tester rotate/zoom is not wired.
+```

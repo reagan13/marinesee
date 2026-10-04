@@ -25,6 +25,7 @@ Read in this order before writing code:
 9. `12-colab-and-training.md`
 10. `16-flutter-audit-and-scaffold.md` — before any `app/` code
 11. `17-how-to-run-flutter.md` — SDK + phone, no emulator
+12. `19-evaluation-question-spec.md` and `20-evaluation-gaps.md` — before any `app/` change. The questionnaire is 29 frozen statements. Do not restyle the app in a way that drops a `not-met` or `unmeasured` behavior.
 
 Then use the rest as needed per module.
 
@@ -46,6 +47,8 @@ Then use the rest as needed per module.
 | [11-species.md](11-species.md) | The nine Mati City species and profile fields |
 | [12-colab-and-training.md](12-colab-and-training.md) | How Cursor, this repo, Colab, and Google Drive fit |
 | [13-evaluation-iso25010.md](13-evaluation-iso25010.md) | How the study will evaluate the system |
+| [19-evaluation-question-spec.md](19-evaluation-question-spec.md) | The 29 user questions, the pass check for each, and whether the app meets it |
+| [20-evaluation-gaps.md](20-evaluation-gaps.md) | Open evaluation work: 8 `not-met`, 16 `unmeasured`. Read before changing the app |
 | [14-open-questions.md](14-open-questions.md) | Decisions still required |
 | [15-implementation-roadmap.md](15-implementation-roadmap.md) | Suggested build order |
 | [16-flutter-audit-and-scaffold.md](16-flutter-audit-and-scaffold.md) | Flutter lock, audit, scaffold spec |

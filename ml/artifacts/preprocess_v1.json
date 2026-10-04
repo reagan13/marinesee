@@ -1,0 +1,72 @@
+{
+  "listed": 2175,
+  "kept": 2175,
+  "skipped": 0,
+  "cropped": 648,
+  "review_low_plant": 333,
+  "review_high_sky": 318,
+  "by_slug_listed": {
+    "cymodocea_rotundata": 158,
+    "cymodocea_serrulata": 87,
+    "enhalus_acoroides": 666,
+    "halodule_pinifolia": 85,
+    "halodule_uninervis": 375,
+    "halophila_minor": 24,
+    "halophila_ovalis": 619,
+    "syringodium_isoetifolium": 161
+  },
+  "by_slug_kept": {
+    "cymodocea_rotundata": 158,
+    "cymodocea_serrulata": 87,
+    "enhalus_acoroides": 666,
+    "halodule_pinifolia": 85,
+    "halodule_uninervis": 375,
+    "halophila_minor": 24,
+    "halophila_ovalis": 619,
+    "syringodium_isoetifolium": 161
+  },
+  "skip_reasons": {},
+  "date": "2026-09-19",
+  "root": "D:\\pepot\\marinesee\\assets\\species\\Seagrass",
+  "dest": "D:\\pepot\\marinesee\\data\\processed\\v1",
+  "write_images": true,
+  "held_out_listed": 743,
+  "held_out_species": [
+    "thalassia_hemprichii"
+  ],
+  "study_species": [
+    "cymodocea_rotundata",
+    "cymodocea_serrulata",
+    "enhalus_acoroides",
+    "halodule_pinifolia",
+    "halodule_uninervis",
+    "halophila_minor",
+    "halophila_ovalis",
+    "syringodium_isoetifolium",
+    "thalassia_hemprichii"
+  ],
+  "trainable_species": [
+    "cymodocea_rotundata",
+    "cymodocea_serrulata",
+    "enhalus_acoroides",
+    "halodule_pinifolia",
+    "halodule_uninervis",
+    "halophila_minor",
+    "halophila_ovalis",
+    "syringodium_isoetifolium"
+  ],
+  "variant": "all",
+  "split_seed": 42,
+  "preprocess": {
+    "version": "v1",
+    "resize": 256,
+    "color": "RGB",
+    "exif_transpose": true,
+    "leaf_crop": true,
+    "min_side_px": 64,
+    "min_pixel_std": 8.0,
+    "plant_fraction_is_diagnostic": true,
+    "variant": "all"
+  },
+  "note": "Local dump is not the Drive training root. H. pinifolia all is smaller here than on Drive."
+}

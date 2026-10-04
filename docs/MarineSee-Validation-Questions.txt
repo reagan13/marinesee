@@ -1,0 +1,76 @@
+DOMAIN 1: FUNCTIONAL SUITABILITY
+
+Functional completeness
+1. MarineSee lets me take a seagrass photo with the phone camera or choose a photo already saved on the phone.
+2. MarineSee has a library I can browse that contains the nine seagrass species documented in Mati City.
+3. From an identification result, I can open that species' profile and its 3D view.
+
+Functional correctness
+4. MarineSee shows the name of the identified species and a confidence score for that result.
+5. When MarineSee is not confident in the result, it tells me to take the photo again.
+
+Functional appropriateness
+6. Each species profile shows the scientific name, common name, botanical characteristics, ecological role, conservation status, and where it grows in Mati.
+7. I can rotate and zoom the 3D model so I can look at the species more closely.
+
+DOMAIN 2: USABILITY
+
+Appropriateness recognizability
+1. It is easy to understand that MarineSee is for identifying and learning the seagrass species of Mati City.
+
+Learnability
+2. After a short explanation, I can identify a photo and open the library without someone guiding each step.
+
+Operability
+3. The camera, upload, library, and 3D controls are easy to use on a phone.
+
+User error protection
+4. The message that tells me to retake a photo is clear.
+
+User interface aesthetics
+5. The text, colors, and layout are clear and comfortable to read on a phone screen.
+
+Accessibility
+6. The labels and buttons are large enough to read and tap without difficulty.
+
+DOMAIN 3: PERFORMANCE EFFICIENCY
+
+Time behavior
+1. MarineSee shows the identification result within about five seconds.
+2. A species profile opens without a long wait.
+3. Moving from the library to a species profile and its 3D view does not take long.
+
+Resource utilization
+4. I can rotate and zoom a 3D model without the screen freezing or lagging.
+5. Opening several species in one session does not make the app lag.
+
+DOMAIN 4: RELIABILITY
+
+Maturity
+1. I can identify a photo and open a species profile without the app closing or crashing.
+2. I can identify another photo after the first one without the app crashing.
+
+Availability
+3. When I open MarineSee, I can use the library and the identify feature.
+
+Fault tolerance
+4. If an identification does not finish, I can try again without the app shutting down.
+
+Recoverability
+5. After I close MarineSee and open it again, the species library is still there.
+6. If I leave a species profile and open it again, the same information is still shown.
+
+DOMAIN 5: COMPATIBILITY
+
+Co-existence
+1. I can identify a photo and open the library while other apps stay installed on the same phone.
+2. I do not have to uninstall other apps before MarineSee will open.
+
+DOMAIN 6: PORTABILITY
+
+Adaptability
+1. The identify, library, and profile screens can still be read and used on Android phones with different screen sizes.
+2. MarineSee runs on a phone using Android 8.0 or a newer version.
+
+Installability
+3. MarineSee can be installed on a second Android phone that meets the device requirements, without extra tools.

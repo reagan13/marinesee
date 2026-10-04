@@ -4,7 +4,10 @@
 
 Run on a **physical Android 8.0+ phone**. Do **not** use the Android emulator on the 7520U laptop.
 
+Identify calls a laptop API (`python ml/src/serve_identify.py`), then:
+
 ```bat
+adb reverse tcp:8765 tcp:8765
 cd app
 flutter pub get
 flutter devices

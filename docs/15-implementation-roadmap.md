@@ -19,6 +19,7 @@ Suggested order. Waterfall in the paper is the **documentation story**. Build in
 
 - [x] `ml/src` preprocess, features, split, train
 - [x] Colab notebook `02_svm_v1_eight_class.ipynb`
+- [x] Dedicated preprocess export (`03_preprocess_v1.ipynb` / `export_processed.py`)
 - [ ] Run 02 in Colab; paste test accuracy here
 - [ ] Export artifacts into `ml/artifacts/` (and Drive `Seagrass-ml-artifacts/v1`)
 

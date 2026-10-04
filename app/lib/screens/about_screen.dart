@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../theme/tokens.dart';
+import '../widgets/icon_well.dart';
+import '../widgets/ocean_layout.dart';
+import '../widgets/ocean_surface.dart';
+import '../widgets/page_hero.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -10,40 +13,66 @@ class AboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final title = Theme.of(context).textTheme.headlineSmall?.copyWith(
-      color: AppTokens.ink,
-      fontWeight: FontWeight.w700,
-    );
-    final body = Theme.of(context).textTheme.bodyLarge?.copyWith(
-      color: AppTokens.ink,
-    );
+    final body = Theme.of(context).textTheme.bodyLarge;
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('About')),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+    return OceanScaffold(
+      title: 'About',
+      body: OceanPage(
         children: [
-          Text('MarineSee', style: title),
-          const SizedBox(height: 8),
-          Text(
-            'A seagrass education app for Mati City, Davao Oriental.',
-            style: body,
+          const PageHero(
+            kicker: 'STUDY',
+            title: 'Nine local species',
+            subtitle:
+                'A seagrass education app for Mati City, Davao Oriental. Identification uses an SVM. English only.',
+            icon: Icons.menu_book_outlined,
           ),
-          const SizedBox(height: 16),
-          Text(
-            'The library covers the nine documented local species. Identification uses an SVM. This build is English only.',
-            style: body,
+          const SizedBox(height: 20),
+          OceanSurface(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const IconWell(icon: Icons.phone_android),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'On this device',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        'Needs Android 8.0 or newer and at least 3 GB RAM. Use a physical phone. Do not use the Android emulator on the study laptop.',
+                        style: body,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-          const SizedBox(height: 16),
-          Text(
-            'Needs Android 8.0 or newer and at least 3 GB RAM. Use a physical phone. Do not use the Android emulator on the study laptop.',
-            style: body,
-          ),
-          const SizedBox(height: 16),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(_conservation, style: body),
+          const SizedBox(height: 12),
+          OceanSurface(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const IconWell(icon: Icons.waves_outlined),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Why it matters',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      const SizedBox(height: 6),
+                      Text(_conservation, style: body),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ],

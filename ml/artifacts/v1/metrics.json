@@ -1,0 +1,167 @@
+{
+  "classes": [
+    "cymodocea_rotundata",
+    "cymodocea_serrulata",
+    "enhalus_acoroides",
+    "halodule_pinifolia",
+    "halodule_uninervis",
+    "halophila_minor",
+    "halophila_ovalis",
+    "syringodium_isoetifolium"
+  ],
+  "held_out": [
+    "thalassia_hemprichii"
+  ],
+  "variant": "all",
+  "image_size": 256,
+  "n_train": 2654,
+  "n_val": 552,
+  "n_test": 552,
+  "val_accuracy": 0.36594202898550726,
+  "test_accuracy": 0.3496376811594203,
+  "test_report": {
+    "cymodocea_rotundata": {
+      "precision": 0.2,
+      "recall": 0.20833333333333334,
+      "f1-score": 0.20408163265306123,
+      "support": 24.0
+    },
+    "cymodocea_serrulata": {
+      "precision": 0.2,
+      "recall": 0.3076923076923077,
+      "f1-score": 0.24242424242424243,
+      "support": 13.0
+    },
+    "enhalus_acoroides": {
+      "precision": 0.5148514851485149,
+      "recall": 0.52,
+      "f1-score": 0.5174129353233831,
+      "support": 100.0
+    },
+    "halodule_pinifolia": {
+      "precision": 0.1506849315068493,
+      "recall": 0.25,
+      "f1-score": 0.18803418803418803,
+      "support": 88.0
+    },
+    "halodule_uninervis": {
+      "precision": 0.4177215189873418,
+      "recall": 0.32038834951456313,
+      "f1-score": 0.3626373626373626,
+      "support": 206.0
+    },
+    "halophila_minor": {
+      "precision": 0.3333333333333333,
+      "recall": 0.25,
+      "f1-score": 0.2857142857142857,
+      "support": 4.0
+    },
+    "halophila_ovalis": {
+      "precision": 0.4657534246575342,
+      "recall": 0.3655913978494624,
+      "f1-score": 0.40963855421686746,
+      "support": 93.0
+    },
+    "syringodium_isoetifolium": {
+      "precision": 0.34615384615384615,
+      "recall": 0.375,
+      "f1-score": 0.36,
+      "support": 24.0
+    },
+    "accuracy": 0.3496376811594203,
+    "macro avg": {
+      "precision": 0.32856231747342746,
+      "recall": 0.3246256735487083,
+      "f1-score": 0.32124290012542384,
+      "support": 552.0
+    },
+    "weighted avg": {
+      "precision": 0.3825220100235923,
+      "recall": 0.3496376811594203,
+      "f1-score": 0.3603628909472065,
+      "support": 552.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      5,
+      1,
+      4,
+      3,
+      6,
+      0,
+      2,
+      3
+    ],
+    [
+      0,
+      4,
+      3,
+      1,
+      1,
+      0,
+      4,
+      0
+    ],
+    [
+      6,
+      5,
+      52,
+      10,
+      17,
+      0,
+      9,
+      1
+    ],
+    [
+      2,
+      5,
+      8,
+      22,
+      42,
+      0,
+      7,
+      2
+    ],
+    [
+      4,
+      3,
+      17,
+      91,
+      66,
+      1,
+      14,
+      10
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      6,
+      2,
+      15,
+      16,
+      19,
+      1,
+      34,
+      0
+    ],
+    [
+      1,
+      0,
+      2,
+      3,
+      7,
+      0,
+      2,
+      9
+    ]
+  ]
+}

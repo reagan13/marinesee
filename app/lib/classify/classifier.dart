@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 enum IdentifyStatus { stub, ok, lowConfidence, error }
 
@@ -17,5 +17,5 @@ class IdentifyResult {
 }
 
 abstract class Classifier {
-  Future<IdentifyResult> identify(File image);
+  Future<IdentifyResult> identify(XFile image);
 }

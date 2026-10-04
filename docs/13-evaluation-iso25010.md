@@ -2,7 +2,7 @@
 
 **STUDY:** students, tourists, researchers, and coastal community members fill a user evaluation and use the app. Results judge whether MarineSee supports interactive seagrass education and visualization.
 
-The paper names characteristics but does not attach the questionnaire items. This file keeps development evaluable.
+The paper names characteristics but does not attach the questionnaire items. The statements for expert validation are in `MarineSee-Validation-Questionnaire.docx`. Whether the running app can earn a high user score on those statements is tracked in `19-evaluation-question-spec.md`. What is still `not-met` or `unmeasured` is listed in `20-evaluation-gaps.md`. Read that file before changing the app. This file keeps development evaluable.
 
 ## Who evaluates
 
@@ -16,8 +16,8 @@ Consent and withdrawal are research ethics, not app features.
 |----------------|-------------------------|
 | Functional suitability | Identify a photo, open the matching profile, rotate/zoom the 3D model, browse all nine species |
 | Usability | Complete identify + library without a facilitator after a short brief |
-| Performance efficiency | Identification returns within about five seconds; 3D stays usable on a qualifying phone |
-| Reliability | Repeat identify on the same photo; app does not lose the library |
+| Performance efficiency | Identification returns within about five seconds; opening a profile and its 3D view does not take long; 3D stays usable, including across several species in one session |
+| Reliability | Repeat identify on another photo without a crash; app does not lose the library; reopening a profile still shows the same information |
 | Compatibility | Same flows on more than one Android device / screen size (Android 8.0+ floor) |
 | Portability | Install the APK on a second qualifying device without extra tools |
 

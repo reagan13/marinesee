@@ -7,17 +7,33 @@ class DataComingBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: AppTokens.noticeFill,
-        borderRadius: BorderRadius.circular(AppTokens.radius),
-      ),
-      child: Text(
-        'data coming',
-        style: Theme.of(context).textTheme.labelLarge?.copyWith(
-          color: AppTokens.notice,
-          fontWeight: FontWeight.w600,
+    final tokens = context.tokens;
+
+    return Semantics(
+      label: 'Data coming',
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: BoxDecoration(
+          color: tokens.noticeFill,
+          borderRadius: BorderRadius.circular(AppRadius.pill),
+          border: Border.all(color: tokens.noticeBorder),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.schedule, size: 14, color: tokens.notice),
+            const SizedBox(width: 6),
+            Flexible(
+              child: Text(
+                'Data coming',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  color: tokens.notice,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

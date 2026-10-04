@@ -14,6 +14,7 @@ Read `docs/README.md` before changing product behavior. Labels: **STUDY** / **IM
 - **Do not expand scope.** No iOS v1, VR/AR, GPS/GIS, water-quality sensors, extra taxa, or Filipino/Bisaya until the study says so.
 - **No Blender work in this repo.** 3D is integration only: play a dropped `.glb` / `.mp4` or show a placeholder. Do not author `.blend` files or treat modeling as a task here.
 - **Flutter only for the client.** Android minSdk 26. Physical phone. Never add a Kotlin/React Native second app. Never treat the emulator as the default device.
+- **Evaluation questions.** The 29 user statements and their pass checks are `docs/19-evaluation-question-spec.md`. Before any `app/` change, read `docs/20-evaluation-gaps.md` and keep every open statement. Do not claim a high user score while a row is `not-met` or `unmeasured`. Update a row’s status in the same change that affects it, and update the gap lists in the same edit. Do not add security or maintainability items to that user form.
 
 ## Layout
 

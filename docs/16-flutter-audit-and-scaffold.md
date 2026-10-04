@@ -18,7 +18,7 @@ Do not scaffold Kotlin “as well.” One client.
 | Guest identify + library (no visitor login) | Default |
 | Bundled JSON for profiles in v1 | Default |
 | Flutter project under `app/` | **Not started** |
-| Camera → real SVM on device | **Not started** (scaffold must not fake 85%) |
+| Camera → real SVM on device | **v1 = laptop API** (`ApiClassifier` → `serve_identify.py`). Not on-device. |
 | Adviser-approved species paragraphs | **OPEN** — stub copy only |
 | Who drops `.glb` / `.mp4` | **OPEN** |
 | On-device vs API inference | **OPEN** — scaffold uses a `Classifier` interface with a stub |
@@ -117,8 +117,8 @@ From Library or Identify result → **Species profile** → **3D** (placeholder)
 
 ### 3D (FR-5)
 
-- If `assets/models-3d/<slug>.glb` or `_growth.mp4` is missing: placeholder copy, no crash.
-- Do not add a 3D engine in the scaffold.
+- If `app/assets/models-3d/<slug>_growth.mp4` exists: play/pause loop. If only a still exists: photo preview. If a `.glb` exists: note it (no rotate/zoom engine yet). Else placeholder, no crash.
+- Do not add a 3D engine until a `.glb` needs rotate/zoom.
 
 ### About
 
@@ -137,6 +137,7 @@ Coastal / educational, not a second FurEscue skin.
 Keep the first `pubspec` short:
 
 - `image_picker`
+- `video_player` (growth clips only; no 3D engine)
 - `google_fonts` **or** device fonts only (prefer device fonts to save build time)
 - No Firebase, no ML kit, no tflite, no camera plugin besides picker unless needed
 

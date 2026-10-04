@@ -27,8 +27,8 @@ Content is localized to Mati. Do not paste generic global seagrass pages that na
 
 **IMPLEMENTATION (30 Aug 2026):** This repo’s owner builds the **mobile app + SVM identify**. We do **not** author Blender scenes. The study still has a 3D / growth viewer; that is a **slot** in the app.
 
-- Teammate (or later drop) supplies a `.glb` (preferred, clip `growth`) or an `.mp4` per species.
-- The app **loads and plays** the file: rotate / zoom if GLB, play/pause if video.
+- Teammate (or later drop) supplies a `.glb` (preferred, clip `growth`) or an `.mp4` per species, copied into `app/assets/models-3d/`.
+- The app **plays** a growth `.mp4` (play/pause, loop). A bundled `.glb` is detected but rotate/zoom is not wired yet. If only a still exists, show that as a photo preview.
 - Until a file exists, the species screen shows a placeholder (“3D model coming”).
 - No Blender install, no `.blend` editing, no modeling tasks in this repo.
 - No VR / AR, no live simulation.

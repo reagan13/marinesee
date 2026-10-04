@@ -1,0 +1,9 @@
+# MarineSee ML pipeline dependencies.
+# Installed locally for smoke tests; full training still runs on Google Colab
+# (see docs/12-colab-and-training.md). Keep in sync with ml/src imports.
+
+numpy>=1.26,<3
+pillow>=10
+scikit-image>=0.23
+scikit-learn>=1.5
+joblib>=1.3

@@ -1,19 +1,48 @@
-"""List, load, resize, and lightly augment RGB images."""
+"""List, QC, resize, and lightly augment RGB images."""
 
 from __future__ import annotations
 
+from io import BytesIO
 from pathlib import Path
 
 import numpy as np
 from PIL import Image, ImageOps
 
-from .dataset_contract import (
-    IMAGE_SIZE,
-    IMAGE_SUFFIXES,
-    TRAIN_VARIANT,
-    TRAINABLE_SPECIES,
-    classify_folder,
-)
+try:
+    from .dataset_contract import (
+        IMAGE_SIZE,
+        IMAGE_SUFFIXES,
+        TRAIN_VARIANT,
+        TRAINABLE_SPECIES,
+        classify_folder,
+    )
+    from .inventory import iter_images
+    from .leaf_focus import analyze_and_crop
+except ImportError:  # `python test_preprocess.py` from ml/src
+    from dataset_contract import (
+        IMAGE_SIZE,
+        IMAGE_SUFFIXES,
+        TRAIN_VARIANT,
+        TRAINABLE_SPECIES,
+        classify_folder,
+    )
+    from inventory import iter_images
+    from leaf_focus import analyze_and_crop
+
+PREPROCESS_SPEC = {
+    "version": "v1",
+    "resize": IMAGE_SIZE,
+    "color": "RGB",
+    "exif_transpose": True,
+    "leaf_crop": True,
+    "min_side_px": 64,
+    "min_pixel_std": 8.0,
+    "plant_fraction_is_diagnostic": True,
+    "variant": TRAIN_VARIANT,
+}
+
+MIN_SIDE_PX = 64
+MIN_PIXEL_STD = 8.0
 
 
 def cap_per_class(
@@ -37,29 +66,83 @@ def cap_per_class(
     return out
 
 
-def list_labeled_images(root: Path) -> list[tuple[Path, str]]:
-    """Return (path, slug) for TRAINABLE species and TRAIN_VARIANT only."""
+def list_labeled_images(
+    root: Path,
+    *,
+    species: tuple[str, ...] = TRAINABLE_SPECIES,
+    variant: str = TRAIN_VARIANT,
+) -> list[tuple[Path, str]]:
+    """Return (path, slug) for the given species and variant only.
+
+    Skips nested folders of a different class (Thalassia-under-Enhalus dumps).
+    """
     pairs: list[tuple[Path, str]] = []
     for child in sorted(root.iterdir(), key=lambda p: p.name.lower()):
         if not child.is_dir() or child.name.startswith("."):
             continue
-        slug, scope, variant = classify_folder(child.name)
-        if scope != "study" or slug not in TRAINABLE_SPECIES:
+        slug, scope, folder_variant = classify_folder(child.name)
+        if scope != "study" or slug not in species:
             continue
-        if variant != TRAIN_VARIANT:
+        if folder_variant != variant:
             continue
-        for path in child.rglob("*"):
-            if path.is_file() and path.suffix.lower() in IMAGE_SUFFIXES:
+        for path in iter_images(child):
+            if path.suffix.lower() in IMAGE_SUFFIXES:
                 pairs.append((path, slug))
     return pairs
 
 
-def load_rgb(path: Path, size: int = IMAGE_SIZE) -> np.ndarray:
-    image = Image.open(path)
+def _pil_to_rgb(image: Image.Image) -> np.ndarray:
     image = ImageOps.exif_transpose(image)
     image = image.convert("RGB")
+    return np.asarray(image, dtype=np.uint8)
+
+
+def load_rgb_full(path: Path) -> np.ndarray:
+    return _pil_to_rgb(Image.open(path))
+
+
+def load_rgb_from_bytes(data: bytes, size: int = IMAGE_SIZE) -> np.ndarray:
+    return resize_rgb(_pil_to_rgb(Image.open(BytesIO(data))), size=size)
+
+
+def resize_rgb(rgb: np.ndarray, size: int = IMAGE_SIZE) -> np.ndarray:
+    image = Image.fromarray(rgb)
     image = image.resize((size, size), Image.Resampling.LANCZOS)
     return np.asarray(image, dtype=np.uint8)
+
+
+def load_rgb(path: Path, size: int = IMAGE_SIZE) -> np.ndarray:
+    return resize_rgb(load_rgb_full(path), size=size)
+
+
+def qc_reason(rgb: np.ndarray) -> str | None:
+    """Return a skip reason, or None if the frame may be used.
+
+    Plant/sky scores stay in the manifest. They are not reject rules — brown
+    blades and blue lab cards fail a green-only cut.
+    """
+    height, width = rgb.shape[:2]
+    if min(height, width) < MIN_SIDE_PX:
+        return "too_small"
+    if float(rgb.std()) < MIN_PIXEL_STD:
+        return "low_contrast"
+    return None
+
+
+def process_rgb(rgb: np.ndarray, size: int = IMAGE_SIZE) -> tuple[np.ndarray, dict]:
+    """QC → optional plant crop → resize. Does not augment."""
+    reason = qc_reason(rgb)
+    cropped, frac, sky, did_crop = analyze_and_crop(rgb)
+    base = {
+        "plant_fraction": frac,
+        "sky_fraction": sky,
+        "cropped": False,
+        "src_size": [int(rgb.shape[1]), int(rgb.shape[0])],
+    }
+    if reason is not None:
+        return rgb, {"status": "skipped", "reason": reason, **base}
+    out = resize_rgb(cropped, size=size)
+    return out, {"status": "kept", "reason": None, **base, "cropped": did_crop}
 
 
 def augment_rgb(rgb: np.ndarray, kind: str) -> np.ndarray:

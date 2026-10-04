@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../classify/stub_classifier.dart';
-import '../theme/tokens.dart';
-import 'about_screen.dart';
+import '../classify/api_classifier.dart';
+import '../widgets/app_menu_sheet.dart';
+import '../widgets/app_nav_bar.dart';
+import '../widgets/aurora_atmosphere.dart';
 import 'identify_screen.dart';
 import 'library_screen.dart';
 
@@ -15,42 +17,36 @@ class AppShell extends StatefulWidget {
 
 class _AppShellState extends State<AppShell> {
   int _index = 0;
-  final _classifier = StubClassifier();
+  final _classifier = ApiClassifier();
+  final _identifyKey = GlobalKey<IdentifyScreenState>();
 
   @override
   Widget build(BuildContext context) {
     final pages = [
-      IdentifyScreen(classifier: _classifier),
+      IdentifyScreen(key: _identifyKey, classifier: _classifier),
       const LibraryScreen(),
-      const AboutScreen(),
     ];
 
-    return Scaffold(
-      body: IndexedStack(index: _index, children: pages),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _index,
-        backgroundColor: AppTokens.surface,
-        onDestinationSelected: (value) {
-          setState(() => _index = value);
-        },
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.camera_alt_outlined),
-            selectedIcon: Icon(Icons.camera_alt),
-            label: 'Identify',
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        const AuroraAtmosphere(),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          extendBody: true,
+          resizeToAvoidBottomInset: !kIsWeb,
+          body: IndexedStack(index: _index, children: pages),
+          bottomNavigationBar: AppNavBar(
+            librarySelected: _index == 1,
+            onLibrary: () => setState(() => _index = 1),
+            onCamera: () {
+              setState(() => _index = 0);
+              _identifyKey.currentState?.openCamera();
+            },
+            onMenu: () => showAppMenu(context),
           ),
-          NavigationDestination(
-            icon: Icon(Icons.menu_book_outlined),
-            selectedIcon: Icon(Icons.menu_book),
-            label: 'Library',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.info_outline),
-            selectedIcon: Icon(Icons.info),
-            label: 'About',
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

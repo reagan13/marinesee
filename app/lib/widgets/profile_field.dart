@@ -1,35 +1,32 @@
 import 'package:flutter/material.dart';
 
-import '../theme/tokens.dart';
-
 class ProfileField extends StatelessWidget {
   const ProfileField({
     super.key,
     required this.label,
     required this.value,
+    this.italic = false,
   });
 
   final String label;
   final String value;
+  final bool italic;
 
   @override
   Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.symmetric(vertical: 4),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            label,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: AppTokens.inkMuted,
-            ),
-          ),
-          const SizedBox(height: 4),
+          Text(label, style: text.labelMedium),
+          const SizedBox(height: 6),
           Text(
             value,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color: AppTokens.ink,
+            style: text.bodyLarge?.copyWith(
+              fontStyle: italic ? FontStyle.italic : FontStyle.normal,
             ),
           ),
         ],

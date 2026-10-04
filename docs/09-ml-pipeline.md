@@ -28,7 +28,7 @@ MarineSee’s dataset is **localized and self-collected**. That is the reason fo
 - Augment: random flip, rotation, zoom
 - Total image count in the paper is still `[INSERT NUMBER]`
 
-**IMPLEMENTATION:** images live on **Google Drive**, not in git. Counts: `ml/artifacts/inventory.md`. v1 trains **eight** classes (`TRAINABLE_SPECIES`) from the **`all`** folders. *Thalassia hemprichii* is held out until a dataset folder exists. Resize **256×256**. Split seed **42**.
+**IMPLEMENTATION:** images live on **Google Drive**, not in git. Counts: `ml/artifacts/inventory.md`. v1 trains **eight** classes (`TRAINABLE_SPECIES`) from the **`all`** folders. *Thalassia hemprichii* is held out until a dataset folder exists. Resize **256×256**. Split seed **42**. Local preprocess export: `python ml/src/export_processed.py` → `data/processed/v1` + `ml/artifacts/preprocess_v1.md`.
 
 **OPEN:** *Thalassia* source; final image size.
 

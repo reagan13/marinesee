@@ -32,8 +32,8 @@ thalassia_hemprichii/
 | Folder id | `1MU31a5BG3MKn1fEYV-ljhc2zS4CoE79F` |
 | Owner (as of Aug 2026) | akeroshii |
 | Colab path after shortcut | `/content/drive/MyDrive/Seagrass` |
-| Inventory date | 30 Aug 2026 (`ml/artifacts/inventory.md`) |
-| `all` images (8 species) | 3896 — *Thalassia hemprichii* still **0** |
+| Inventory date | Drive 30 Aug 2026; local recount 19 Sep 2026 (`ml/artifacts/inventory.md`) |
+| `all` images (8 species, Drive) | 3896 — *Thalassia hemprichii* still **0** on the Drive root |
 | research-grade (no copy) | 898 |
 | Ovalis `- Copy` | 378 — do not mix with `all` |
 | Split | not on Drive; we will split 70/15/15 later |
@@ -42,7 +42,7 @@ Drive titles are **not** our slugs. They look like `Enhalus acoroides dataset (a
 
 ## What the inventory found
 
-- Eight of nine study species are present. ***Thalassia hemprichii* is missing** from this folder.
+- Eight of nine study species are present **on the Drive root**. ***Thalassia hemprichii* was missing there.** A local dump had it nested under other taxa; those files now sit in top-level Thalassia folders (see `ml/artifacts/inventory.md`). Still held out of v1 until audited.
 - *Halophila ovalis* has no folder tagged `research-grade`; only `all` (1549) and `(research-grade) - Copy` (378).
 - *Halophila spinulosa* was **not** in this mount.
 - Research-grade-only is not trainable: *H. minor* has **3** images; *C. serrulata* 15; *H. pinifolia* 19.

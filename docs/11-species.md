@@ -22,7 +22,7 @@ Use these **scientific names as class labels** in folders, `label_map.json`, and
 
 ## v1 training set (IMPLEMENTATION)
 
-Drive has no *Thalassia hemprichii* images. v1 trains the other **eight** slugs. The paper’s ninth class is not deleted — it is held out. See `ml/src/dataset_contract.py` (`TRAINABLE_SPECIES`).
+A local dump (19 Sep 2026) had *Thalassia hemprichii* photos nested under *Enhalus* / *Halodule* folders. Those files now live at the top-level `Thalassia hemprichii dataset (research-grade)` and `(all)` folders. v1 still trains the other **eight** slugs until that folder is audited for mix-ins. The paper’s ninth class is not deleted — it is held out. See `ml/src/dataset_contract.py` (`TRAINABLE_SPECIES`).
 
 ## On Drive but out of the study
 

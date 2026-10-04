@@ -69,10 +69,26 @@ You should see the phone. If you only see `windows` / `chrome`, the cable or dri
 
 From repo root, or from `app/`:
 
+Identify needs the SVM process on this PC (not inside Flutter):
+
 ```bat
+cd ml\src
+python serve_identify.py
+```
+
+USB phone (recommended):
+
+```bat
+adb reverse tcp:8765 tcp:8765
 cd app
 flutter pub get
 flutter run
+```
+
+Same Wi-Fi instead of `adb reverse`:
+
+```bat
+flutter run --dart-define=IDENTIFY_API_URL=http://<laptop-lan-ip>:8765
 ```
 
 First Gradle build can take several minutes and will spin the fans. That is once. Later runs are shorter.

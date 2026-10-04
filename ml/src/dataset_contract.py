@@ -18,8 +18,9 @@ STUDY_SPECIES: tuple[str, ...] = (
     "thalassia_hemprichii",
 )
 
-# Paper still lists nine. Drive has no Thalassia images (30 Aug 2026).
-# v1 trains the eight classes that exist. Add Thalassia back when the folder appears.
+# Paper still lists nine. Local dumps had Thalassia nested under other taxa
+# (fixed 19 Sep 2026). v1 still trains the eight Drive-root classes until
+# the relocated folder is audited for Enhalus mix-ins, then add it back.
 HELD_OUT_SPECIES: tuple[str, ...] = ("thalassia_hemprichii",)
 TRAINABLE_SPECIES: tuple[str, ...] = tuple(
     s for s in STUDY_SPECIES if s not in HELD_OUT_SPECIES
