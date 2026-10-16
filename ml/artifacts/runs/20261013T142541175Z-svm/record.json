@@ -1,0 +1,896 @@
+{
+  "kind": "svm",
+  "runtime": "local",
+  "started_at": "2026-10-13T14:22:50Z",
+  "elapsed_seconds": 170.9,
+  "data_root": "D:\\pepot\\marinesee\\assets\\species\\Seagrass",
+  "max_per_class": 400,
+  "split_seed": 42,
+  "image_size": 256,
+  "variant": "all",
+  "feature_spec": {
+    "version": "v1",
+    "color": "hsv_hist_16x3",
+    "texture": "glcm_64px_d1_d2_4angles_4props",
+    "shape": "largest_blob_6",
+    "glcm_size": 64
+  },
+  "classes": [
+    "cymodocea_rotundata",
+    "cymodocea_serrulata",
+    "enhalus_acoroides",
+    "halodule_pinifolia",
+    "halodule_uninervis",
+    "halophila_minor",
+    "halophila_ovalis",
+    "syringodium_isoetifolium"
+  ],
+  "held_out": [
+    "thalassia_hemprichii"
+  ],
+  "images_this_run": 1690,
+  "n_train": 1286,
+  "n_val": 254,
+  "n_test": 254,
+  "train_real_counts": {
+    "syringodium_isoetifolium": 113,
+    "halophila_ovalis": 280,
+    "halodule_pinifolia": 59,
+    "halodule_uninervis": 263,
+    "cymodocea_rotundata": 110,
+    "enhalus_acoroides": 280,
+    "halophila_minor": 16,
+    "cymodocea_serrulata": 61
+  },
+  "train_class_counts": {
+    "syringodium_isoetifolium": 113,
+    "halophila_ovalis": 280,
+    "halodule_pinifolia": 80,
+    "halodule_uninervis": 263,
+    "cymodocea_rotundata": 110,
+    "enhalus_acoroides": 280,
+    "halophila_minor": 80,
+    "cymodocea_serrulata": 80
+  },
+  "tuning": {
+    "split": "fixed 15% validation",
+    "metric": "val_macro_f1",
+    "class_weight": "balanced",
+    "rbf_C": [
+      0.1,
+      0.3,
+      1.0,
+      3.0,
+      10.0,
+      30.0,
+      100.0
+    ],
+    "rbf_gamma": [
+      "scale",
+      0.001,
+      0.003,
+      0.01,
+      0.03,
+      0.1
+    ],
+    "linear_C": [
+      0.01,
+      0.03,
+      0.1,
+      0.3,
+      1.0
+    ]
+  },
+  "best_params": {
+    "kernel": "rbf",
+    "C": 30.0,
+    "gamma": 0.03
+  },
+  "best_val_macro_f1": 0.399388942812271,
+  "tuning_rows": [
+    {
+      "kernel": "rbf",
+      "C": 0.1,
+      "gamma": "scale",
+      "train_accuracy": 0.34914463452566097,
+      "val_accuracy": 0.2283464566929134,
+      "train_macro_f1": 0.36463238712508145,
+      "val_macro_f1": 0.18094545793701525,
+      "f1_gap": 0.1836869291880662,
+      "fit_seconds": 0.2
+    },
+    {
+      "kernel": "rbf",
+      "C": 0.1,
+      "gamma": 0.001,
+      "train_accuracy": 0.08553654743390357,
+      "val_accuracy": 0.09448818897637795,
+      "train_macro_f1": 0.01969914040114613,
+      "val_macro_f1": 0.02158273381294964,
+      "f1_gap": -0.0018835934118035108,
+      "fit_seconds": 0.148
+    },
+    {
+      "kernel": "rbf",
+      "C": 0.1,
+      "gamma": 0.003,
+      "train_accuracy": 0.2115085536547434,
+      "val_accuracy": 0.19291338582677164,
+      "train_macro_f1": 0.18665984211810133,
+      "val_macro_f1": 0.14162333539995356,
+      "f1_gap": 0.04503650671814777,
+      "fit_seconds": 0.139
+    },
+    {
+      "kernel": "rbf",
+      "C": 0.1,
+      "gamma": 0.01,
+      "train_accuracy": 0.33981337480559876,
+      "val_accuracy": 0.2283464566929134,
+      "train_macro_f1": 0.35054145841941076,
+      "val_macro_f1": 0.18863605306844372,
+      "f1_gap": 0.16190540535096704,
+      "fit_seconds": 0.181
+    },
+    {
+      "kernel": "rbf",
+      "C": 0.1,
+      "gamma": 0.03,
+      "train_accuracy": 0.2807153965785381,
+      "val_accuracy": 0.18503937007874016,
+      "train_macro_f1": 0.3377954689621965,
+      "val_macro_f1": 0.1547790899245352,
+      "f1_gap": 0.18301637903766127,
+      "fit_seconds": 0.145
+    },
+    {
+      "kernel": "rbf",
+      "C": 0.1,
+      "gamma": 0.1,
+      "train_accuracy": 0.14307931570762053,
+      "val_accuracy": 0.09448818897637795,
+      "train_macro_f1": 0.14093168556103502,
+      "val_macro_f1": 0.02158273381294964,
+      "f1_gap": 0.11934895174808538,
+      "fit_seconds": 0.143
+    },
+    {
+      "kernel": "rbf",
+      "C": 0.3,
+      "gamma": "scale",
+      "train_accuracy": 0.432348367029549,
+      "val_accuracy": 0.2795275590551181,
+      "train_macro_f1": 0.4534656684856375,
+      "val_macro_f1": 0.234168226378831,
+      "f1_gap": 0.21929744210680652,
+      "fit_seconds": 0.205
+    },
+    {
+      "kernel": "rbf",
+      "C": 0.3,
+      "gamma": 0.001,
+      "train_accuracy": 0.2534992223950233,
+      "val_accuracy": 0.1968503937007874,
+      "train_macro_f1": 0.23527886973390225,
+      "val_macro_f1": 0.14887329677784464,
+      "f1_gap": 0.08640557295605761,
+      "fit_seconds": 0.13
+    },
+    {
+      "kernel": "rbf",
+      "C": 0.3,
+      "gamma": 0.003,
+      "train_accuracy": 0.31959564541213065,
+      "val_accuracy": 0.2440944881889764,
+      "train_macro_f1": 0.3120334480557765,
+      "val_macro_f1": 0.18821938401210497,
+      "f1_gap": 0.12381406404367151,
+      "fit_seconds": 0.111
+    },
+    {
+      "kernel": "rbf",
+      "C": 0.3,
+      "gamma": 0.01,
+      "train_accuracy": 0.416796267496112,
+      "val_accuracy": 0.2755905511811024,
+      "train_macro_f1": 0.433303453259688,
+      "val_macro_f1": 0.22860828334966266,
+      "f1_gap": 0.20469516991002534,
+      "fit_seconds": 0.193
+    },
+    {
+      "kernel": "rbf",
+      "C": 0.3,
+      "gamma": 0.03,
+      "train_accuracy": 0.5178849144634525,
+      "val_accuracy": 0.3228346456692913,
+      "train_macro_f1": 0.5640481324589939,
+      "val_macro_f1": 0.2754603216597997,
+      "f1_gap": 0.28858781079919416,
+      "fit_seconds": 0.159
+    },
+    {
+      "kernel": "rbf",
+      "C": 0.3,
+      "gamma": 0.1,
+      "train_accuracy": 0.5139968895800933,
+      "val_accuracy": 0.14173228346456693,
+      "train_macro_f1": 0.6189701139070145,
+      "val_macro_f1": 0.11595733501471206,
+      "f1_gap": 0.5030127788923024,
+      "fit_seconds": 0.151
+    },
+    {
+      "kernel": "rbf",
+      "C": 1.0,
+      "gamma": "scale",
+      "train_accuracy": 0.6010886469673405,
+      "val_accuracy": 0.31496062992125984,
+      "train_macro_f1": 0.6239872596579632,
+      "val_macro_f1": 0.272208765108958,
+      "f1_gap": 0.3517784945490052,
+      "fit_seconds": 0.129
+    },
+    {
+      "kernel": "rbf",
+      "C": 1.0,
+      "gamma": 0.001,
+      "train_accuracy": 0.31337480559875586,
+      "val_accuracy": 0.2283464566929134,
+      "train_macro_f1": 0.3025935801774286,
+      "val_macro_f1": 0.1813758315750073,
+      "f1_gap": 0.1212177486024213,
+      "fit_seconds": 0.12
+    },
+    {
+      "kernel": "rbf",
+      "C": 1.0,
+      "gamma": 0.003,
+      "train_accuracy": 0.40435458786936235,
+      "val_accuracy": 0.24803149606299213,
+      "train_macro_f1": 0.4081025590961518,
+      "val_macro_f1": 0.20943476694391286,
+      "f1_gap": 0.19866779215223893,
+      "fit_seconds": 0.168
+    },
+    {
+      "kernel": "rbf",
+      "C": 1.0,
+      "gamma": 0.01,
+      "train_accuracy": 0.5614307931570762,
+      "val_accuracy": 0.3188976377952756,
+      "train_macro_f1": 0.5810423399201929,
+      "val_macro_f1": 0.28180585859954943,
+      "f1_gap": 0.2992364813206435,
+      "fit_seconds": 0.11
+    },
+    {
+      "kernel": "rbf",
+      "C": 1.0,
+      "gamma": 0.03,
+      "train_accuracy": 0.8227060653188181,
+      "val_accuracy": 0.38188976377952755,
+      "train_macro_f1": 0.8457736728876284,
+      "val_macro_f1": 0.31629081321563457,
+      "f1_gap": 0.5294828596719938,
+      "fit_seconds": 0.122
+    },
+    {
+      "kernel": "rbf",
+      "C": 1.0,
+      "gamma": 0.1,
+      "train_accuracy": 0.9875583203732504,
+      "val_accuracy": 0.3937007874015748,
+      "train_macro_f1": 0.9889623396001463,
+      "val_macro_f1": 0.3397476362101299,
+      "f1_gap": 0.6492147033900164,
+      "fit_seconds": 0.159
+    },
+    {
+      "kernel": "rbf",
+      "C": 3.0,
+      "gamma": "scale",
+      "train_accuracy": 0.7830482115085536,
+      "val_accuracy": 0.35826771653543305,
+      "train_macro_f1": 0.8004581710473253,
+      "val_macro_f1": 0.3180806194522679,
+      "f1_gap": 0.4823775515950574,
+      "fit_seconds": 0.129
+    },
+    {
+      "kernel": "rbf",
+      "C": 3.0,
+      "gamma": 0.001,
+      "train_accuracy": 0.3856920684292379,
+      "val_accuracy": 0.25196850393700787,
+      "train_macro_f1": 0.38362918935473245,
+      "val_macro_f1": 0.21177601802103135,
+      "f1_gap": 0.1718531713337011,
+      "fit_seconds": 0.122
+    },
+    {
+      "kernel": "rbf",
+      "C": 3.0,
+      "gamma": 0.003,
+      "train_accuracy": 0.48833592534992226,
+      "val_accuracy": 0.3031496062992126,
+      "train_macro_f1": 0.500643002521772,
+      "val_macro_f1": 0.2591688668382061,
+      "f1_gap": 0.24147413568356585,
+      "fit_seconds": 0.126
+    },
+    {
+      "kernel": "rbf",
+      "C": 3.0,
+      "gamma": 0.01,
+      "train_accuracy": 0.7527216174183515,
+      "val_accuracy": 0.3661417322834646,
+      "train_macro_f1": 0.7721375780156682,
+      "val_macro_f1": 0.322526146343678,
+      "f1_gap": 0.4496114316719902,
+      "fit_seconds": 0.138
+    },
+    {
+      "kernel": "rbf",
+      "C": 3.0,
+      "gamma": 0.03,
+      "train_accuracy": 0.9463452566096423,
+      "val_accuracy": 0.41338582677165353,
+      "train_macro_f1": 0.9570711831415234,
+      "val_macro_f1": 0.36729316636601617,
+      "f1_gap": 0.5897780167755072,
+      "fit_seconds": 0.158
+    },
+    {
+      "kernel": "rbf",
+      "C": 3.0,
+      "gamma": 0.1,
+      "train_accuracy": 0.9992223950233281,
+      "val_accuracy": 0.4094488188976378,
+      "train_macro_f1": 0.9988785629513407,
+      "val_macro_f1": 0.34946329641185536,
+      "f1_gap": 0.6494152665394853,
+      "fit_seconds": 0.147
+    },
+    {
+      "kernel": "rbf",
+      "C": 10.0,
+      "gamma": "scale",
+      "train_accuracy": 0.9082426127527217,
+      "val_accuracy": 0.3937007874015748,
+      "train_macro_f1": 0.922489312856803,
+      "val_macro_f1": 0.361426370038711,
+      "f1_gap": 0.561062942818092,
+      "fit_seconds": 0.134
+    },
+    {
+      "kernel": "rbf",
+      "C": 10.0,
+      "gamma": 0.001,
+      "train_accuracy": 0.4572317262830482,
+      "val_accuracy": 0.25984251968503935,
+      "train_macro_f1": 0.4668235791559603,
+      "val_macro_f1": 0.2260439630328022,
+      "f1_gap": 0.2407796161231581,
+      "fit_seconds": 0.115
+    },
+    {
+      "kernel": "rbf",
+      "C": 10.0,
+      "gamma": 0.003,
+      "train_accuracy": 0.6321928460342147,
+      "val_accuracy": 0.30708661417322836,
+      "train_macro_f1": 0.6484256719721913,
+      "val_macro_f1": 0.26735851565945723,
+      "f1_gap": 0.381067156312734,
+      "fit_seconds": 0.151
+    },
+    {
+      "kernel": "rbf",
+      "C": 10.0,
+      "gamma": 0.01,
+      "train_accuracy": 0.8786936236391913,
+      "val_accuracy": 0.3661417322834646,
+      "train_macro_f1": 0.895901377814269,
+      "val_macro_f1": 0.30328565495806875,
+      "f1_gap": 0.5926157228562003,
+      "fit_seconds": 0.134
+    },
+    {
+      "kernel": "rbf",
+      "C": 10.0,
+      "gamma": 0.03,
+      "train_accuracy": 0.9968895800933126,
+      "val_accuracy": 0.43700787401574803,
+      "train_macro_f1": 0.9971813295370044,
+      "val_macro_f1": 0.3963564063927003,
+      "f1_gap": 0.6008249231443041,
+      "fit_seconds": 0.148
+    },
+    {
+      "kernel": "rbf",
+      "C": 10.0,
+      "gamma": 0.1,
+      "train_accuracy": 0.9992223950233281,
+      "val_accuracy": 0.40551181102362205,
+      "train_macro_f1": 0.998878833584716,
+      "val_macro_f1": 0.3467454008783565,
+      "f1_gap": 0.6521334327063595,
+      "fit_seconds": 0.161
+    },
+    {
+      "kernel": "rbf",
+      "C": 30.0,
+      "gamma": "scale",
+      "train_accuracy": 0.9758942457231726,
+      "val_accuracy": 0.38976377952755903,
+      "train_macro_f1": 0.9814993215755077,
+      "val_macro_f1": 0.36211906783086745,
+      "f1_gap": 0.6193802537446402,
+      "fit_seconds": 0.163
+    },
+    {
+      "kernel": "rbf",
+      "C": 30.0,
+      "gamma": 0.001,
+      "train_accuracy": 0.5458786936236392,
+      "val_accuracy": 0.2795275590551181,
+      "train_macro_f1": 0.5620821298617957,
+      "val_macro_f1": 0.24407706204581206,
+      "f1_gap": 0.3180050678159837,
+      "fit_seconds": 0.127
+    },
+    {
+      "kernel": "rbf",
+      "C": 30.0,
+      "gamma": 0.003,
+      "train_accuracy": 0.7744945567651633,
+      "val_accuracy": 0.35039370078740156,
+      "train_macro_f1": 0.7925464518094678,
+      "val_macro_f1": 0.3102483966911423,
+      "f1_gap": 0.4822980551183255,
+      "fit_seconds": 0.129
+    },
+    {
+      "kernel": "rbf",
+      "C": 30.0,
+      "gamma": 0.01,
+      "train_accuracy": 0.9618973561430794,
+      "val_accuracy": 0.38976377952755903,
+      "train_macro_f1": 0.9703295828048943,
+      "val_macro_f1": 0.35626527212975656,
+      "f1_gap": 0.6140643106751378,
+      "fit_seconds": 0.148
+    },
+    {
+      "kernel": "rbf",
+      "C": 30.0,
+      "gamma": 0.03,
+      "train_accuracy": 0.9992223950233281,
+      "val_accuracy": 0.4409448818897638,
+      "train_macro_f1": 0.9988785629513407,
+      "val_macro_f1": 0.399388942812271,
+      "f1_gap": 0.5994896201390697,
+      "fit_seconds": 0.16
+    },
+    {
+      "kernel": "rbf",
+      "C": 30.0,
+      "gamma": 0.1,
+      "train_accuracy": 0.9992223950233281,
+      "val_accuracy": 0.40551181102362205,
+      "train_macro_f1": 0.998878833584716,
+      "val_macro_f1": 0.3467454008783565,
+      "f1_gap": 0.6521334327063595,
+      "fit_seconds": 0.15
+    },
+    {
+      "kernel": "rbf",
+      "C": 100.0,
+      "gamma": "scale",
+      "train_accuracy": 0.9968895800933126,
+      "val_accuracy": 0.41732283464566927,
+      "train_macro_f1": 0.9971813295370044,
+      "val_macro_f1": 0.37112139273254374,
+      "f1_gap": 0.6260599368044607,
+      "fit_seconds": 0.205
+    },
+    {
+      "kernel": "rbf",
+      "C": 100.0,
+      "gamma": 0.001,
+      "train_accuracy": 0.6695178849144634,
+      "val_accuracy": 0.30708661417322836,
+      "train_macro_f1": 0.6886669820806641,
+      "val_macro_f1": 0.2808888725125839,
+      "f1_gap": 0.40777810956808025,
+      "fit_seconds": 0.156
+    },
+    {
+      "kernel": "rbf",
+      "C": 100.0,
+      "gamma": 0.003,
+      "train_accuracy": 0.8872472783825817,
+      "val_accuracy": 0.35826771653543305,
+      "train_macro_f1": 0.9032232775608959,
+      "val_macro_f1": 0.35090094042924236,
+      "f1_gap": 0.5523223371316536,
+      "fit_seconds": 0.179
+    },
+    {
+      "kernel": "rbf",
+      "C": 100.0,
+      "gamma": 0.01,
+      "train_accuracy": 0.9968895800933126,
+      "val_accuracy": 0.4094488188976378,
+      "train_macro_f1": 0.9971813295370044,
+      "val_macro_f1": 0.3637372741909973,
+      "f1_gap": 0.6334440553460072,
+      "fit_seconds": 0.191
+    },
+    {
+      "kernel": "rbf",
+      "C": 100.0,
+      "gamma": 0.03,
+      "train_accuracy": 0.9992223950233281,
+      "val_accuracy": 0.4409448818897638,
+      "train_macro_f1": 0.998878833584716,
+      "val_macro_f1": 0.399388942812271,
+      "f1_gap": 0.599489890772445,
+      "fit_seconds": 0.182
+    },
+    {
+      "kernel": "rbf",
+      "C": 100.0,
+      "gamma": 0.1,
+      "train_accuracy": 0.9992223950233281,
+      "val_accuracy": 0.40551181102362205,
+      "train_macro_f1": 0.998878833584716,
+      "val_macro_f1": 0.3467454008783565,
+      "f1_gap": 0.6521334327063595,
+      "fit_seconds": 0.147
+    },
+    {
+      "kernel": "linear",
+      "C": 0.01,
+      "gamma": null,
+      "train_accuracy": 0.37558320373250387,
+      "val_accuracy": 0.20078740157480315,
+      "train_macro_f1": 0.3720396036412108,
+      "val_macro_f1": 0.17345838970838973,
+      "f1_gap": 0.19858121393282108,
+      "fit_seconds": 0.104
+    },
+    {
+      "kernel": "linear",
+      "C": 0.03,
+      "gamma": null,
+      "train_accuracy": 0.41835147744945567,
+      "val_accuracy": 0.24015748031496062,
+      "train_macro_f1": 0.4214590044925835,
+      "val_macro_f1": 0.20539447716948278,
+      "f1_gap": 0.21606452732310072,
+      "fit_seconds": 0.102
+    },
+    {
+      "kernel": "linear",
+      "C": 0.1,
+      "gamma": null,
+      "train_accuracy": 0.47200622083981336,
+      "val_accuracy": 0.2559055118110236,
+      "train_macro_f1": 0.4824195817032386,
+      "val_macro_f1": 0.22891277103156255,
+      "f1_gap": 0.2535068106716761,
+      "fit_seconds": 0.14
+    },
+    {
+      "kernel": "linear",
+      "C": 0.3,
+      "gamma": null,
+      "train_accuracy": 0.5069984447900466,
+      "val_accuracy": 0.25196850393700787,
+      "train_macro_f1": 0.5248134889755522,
+      "val_macro_f1": 0.22225074052554433,
+      "f1_gap": 0.3025627484500079,
+      "fit_seconds": 0.241
+    },
+    {
+      "kernel": "linear",
+      "C": 1.0,
+      "gamma": null,
+      "train_accuracy": 0.5412130637636081,
+      "val_accuracy": 0.2874015748031496,
+      "train_macro_f1": 0.5676999407070396,
+      "val_macro_f1": 0.24009672851420383,
+      "f1_gap": 0.3276032121928357,
+      "fit_seconds": 0.535
+    }
+  ],
+  "fit_seconds": 0.9,
+  "train_accuracy": 0.9992223950233281,
+  "val_accuracy": 0.4409448818897638,
+  "test_accuracy": 0.38188976377952755,
+  "train_report": {
+    "cymodocea_rotundata": {
+      "precision": 1.0,
+      "recall": 0.990909090909091,
+      "f1-score": 0.9954337899543378,
+      "support": 110.0
+    },
+    "cymodocea_serrulata": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 80.0
+    },
+    "enhalus_acoroides": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 280.0
+    },
+    "halodule_pinifolia": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 80.0
+    },
+    "halodule_uninervis": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 263.0
+    },
+    "halophila_minor": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 80.0
+    },
+    "halophila_ovalis": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 280.0
+    },
+    "syringodium_isoetifolium": {
+      "precision": 0.9912280701754386,
+      "recall": 1.0,
+      "f1-score": 0.9955947136563876,
+      "support": 113.0
+    },
+    "accuracy": 0.9992223950233281,
+    "macro avg": {
+      "precision": 0.9989035087719298,
+      "recall": 0.9988636363636364,
+      "f1-score": 0.9988785629513407,
+      "support": 1286.0
+    },
+    "weighted avg": {
+      "precision": 0.9992292161196147,
+      "recall": 0.9992223950233281,
+      "f1-score": 0.9992223324557924,
+      "support": 1286.0
+    }
+  },
+  "val_report": {
+    "cymodocea_rotundata": {
+      "precision": 0.3,
+      "recall": 0.125,
+      "f1-score": 0.17647058823529413,
+      "support": 24.0
+    },
+    "cymodocea_serrulata": {
+      "precision": 0.6,
+      "recall": 0.23076923076923078,
+      "f1-score": 0.3333333333333333,
+      "support": 13.0
+    },
+    "enhalus_acoroides": {
+      "precision": 0.47368421052631576,
+      "recall": 0.6,
+      "f1-score": 0.5294117647058824,
+      "support": 60.0
+    },
+    "halodule_pinifolia": {
+      "precision": 0.75,
+      "recall": 0.46153846153846156,
+      "f1-score": 0.5714285714285714,
+      "support": 13.0
+    },
+    "halodule_uninervis": {
+      "precision": 0.40963855421686746,
+      "recall": 0.6071428571428571,
+      "f1-score": 0.4892086330935252,
+      "support": 56.0
+    },
+    "halophila_minor": {
+      "precision": 0.5,
+      "recall": 0.25,
+      "f1-score": 0.3333333333333333,
+      "support": 4.0
+    },
+    "halophila_ovalis": {
+      "precision": 0.39622641509433965,
+      "recall": 0.35,
+      "f1-score": 0.37168141592920356,
+      "support": 60.0
+    },
+    "syringodium_isoetifolium": {
+      "precision": 0.47058823529411764,
+      "recall": 0.3333333333333333,
+      "f1-score": 0.3902439024390244,
+      "support": 24.0
+    },
+    "accuracy": 0.4409448818897638,
+    "macro avg": {
+      "precision": 0.487517176891455,
+      "recall": 0.3697229853479853,
+      "f1-score": 0.399388942812271,
+      "support": 254.0
+    },
+    "weighted avg": {
+      "precision": 0.4455847016552863,
+      "recall": 0.4409448818897638,
+      "f1-score": 0.42581755969592244,
+      "support": 254.0
+    }
+  },
+  "test_report": {
+    "cymodocea_rotundata": {
+      "precision": 0.3333333333333333,
+      "recall": 0.16666666666666666,
+      "f1-score": 0.2222222222222222,
+      "support": 24.0
+    },
+    "cymodocea_serrulata": {
+      "precision": 0.3333333333333333,
+      "recall": 0.15384615384615385,
+      "f1-score": 0.21052631578947367,
+      "support": 13.0
+    },
+    "enhalus_acoroides": {
+      "precision": 0.3898305084745763,
+      "recall": 0.38333333333333336,
+      "f1-score": 0.3865546218487395,
+      "support": 60.0
+    },
+    "halodule_pinifolia": {
+      "precision": 0.6363636363636364,
+      "recall": 0.5384615384615384,
+      "f1-score": 0.5833333333333334,
+      "support": 13.0
+    },
+    "halodule_uninervis": {
+      "precision": 0.3176470588235294,
+      "recall": 0.48214285714285715,
+      "f1-score": 0.3829787234042553,
+      "support": 56.0
+    },
+    "halophila_minor": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 4.0
+    },
+    "halophila_ovalis": {
+      "precision": 0.4426229508196721,
+      "recall": 0.45,
+      "f1-score": 0.4462809917355372,
+      "support": 60.0
+    },
+    "syringodium_isoetifolium": {
+      "precision": 0.3684210526315789,
+      "recall": 0.2916666666666667,
+      "f1-score": 0.32558139534883723,
+      "support": 24.0
+    },
+    "accuracy": 0.38188976377952755,
+    "macro avg": {
+      "precision": 0.35269398422245746,
+      "recall": 0.30826465201465203,
+      "f1-score": 0.3196847004602998,
+      "support": 254.0
+    },
+    "weighted avg": {
+      "precision": 0.38261263275980734,
+      "recall": 0.38188976377952755,
+      "f1-score": 0.37356065978738906,
+      "support": 254.0
+    }
+  },
+  "confusion_matrix_test": [
+    [
+      4,
+      1,
+      2,
+      0,
+      11,
+      0,
+      4,
+      2
+    ],
+    [
+      0,
+      2,
+      2,
+      0,
+      3,
+      0,
+      4,
+      2
+    ],
+    [
+      1,
+      1,
+      23,
+      1,
+      23,
+      0,
+      10,
+      1
+    ],
+    [
+      0,
+      0,
+      2,
+      7,
+      0,
+      0,
+      3,
+      1
+    ],
+    [
+      1,
+      0,
+      13,
+      3,
+      27,
+      0,
+      9,
+      3
+    ],
+    [
+      1,
+      0,
+      1,
+      0,
+      2,
+      0,
+      0,
+      0
+    ],
+    [
+      4,
+      1,
+      10,
+      0,
+      14,
+      1,
+      27,
+      3
+    ],
+    [
+      1,
+      1,
+      6,
+      0,
+      5,
+      0,
+      4,
+      7
+    ]
+  ],
+  "study_target_accuracy": 0.85,
+  "loss_note": "RBF SVM is one fit per setting, so there is no epoch train-loss or validation-loss curve. The tuning curve plots train against validation macro F1 across C instead.",
+  "recorded_at": "2026-10-13T14:25:41Z",
+  "run_id": "20261013T142541175Z",
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "numpy": "2.5.4",
+    "sklearn": "1.9.1",
+    "skimage": "0.26.0"
+  },
+  "run_dir": "D:\\pepot\\marinesee\\ml\\artifacts\\runs\\20261013T142541175Z-svm"
+}

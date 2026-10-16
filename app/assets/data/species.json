@@ -2,91 +2,140 @@
   {
     "slug": "cymodocea_rotundata",
     "scientificName": "Cymodocea rotundata",
-    "commonName": "TBD — adviser source",
-    "botanicalCharacteristics": "TBD — adviser source",
-    "ecologicalRole": "TBD — adviser source",
-    "conservationStatus": "TBD — adviser source",
-    "habitat": "TBD — adviser source",
-    "growthProcess": "TBD — adviser source"
+    "commonName": "Smooth ribbon seagrass",
+    "botanicalCharacteristics": "Flat strap-like leaves about 2–4 mm wide, with a rounded smooth tip. Leaf-sheath scars form a continuous ring around the stem, and the rhizome is smooth (Seagrass-Watch).",
+    "ecologicalRole": "In a meadow it helps hold the sand and gives small coastal animals cover and feeding space. A seagrass meadow supports many more animals than bare sand (Seagrass-Watch).",
+    "conservationStatus": "Least Concern on the IUCN Red List. Short et al. (2011) report the global population trend as stable. That category is worldwide, not a count from Mati City.",
+    "habitat": "Shallow reef flats (Seagrass-Watch). Listed among the nine seagrass species in coastal assessments of Mati City (Lawigan, Taitaidaga, Manguihay, and Pujada Bay; Angsinco-Jimenez et al., 2003; Fortes, 2013; Sanchez-Delute et al., 2025).",
+    "growthProcess": "The patch spreads mainly when the buried rhizome grows and sends up new shoots. The plant can also flower and set seed. Rhizome growth is the usual way tropical seagrasses occupy more ground (Seagrass-Watch).",
+    "sources": [
+      "Seagrass-Watch. How to identify seagrass. https://www.seagrasswatch.org/idseagrass/",
+      "Wild Singapore. Seagrasses on Singapore shores (common name). http://wildsingapore.com/wildfacts/plants/seagrass/seagrassfi.htm",
+      "Short, F. T., et al. (2011). Extinction risk assessment of the world’s seagrass species. Biological Conservation, 144, 1961–1971.",
+      "Angsinco-Jimenez et al., 2003; Fortes, 2013; Sanchez-Delute et al., 2025, as cited in docs/11-species.md."
+    ]
   },
   {
     "slug": "cymodocea_serrulata",
     "scientificName": "Cymodocea serrulata",
-    "commonName": "TBD — adviser source",
-    "botanicalCharacteristics": "TBD — adviser source",
-    "ecologicalRole": "TBD — adviser source",
-    "conservationStatus": "TBD — adviser source",
-    "habitat": "TBD — adviser source",
-    "growthProcess": "TBD — adviser source"
+    "commonName": "Serrated ribbon seagrass",
+    "botanicalCharacteristics": "Strap-like leaves about 5–9 mm wide with a serrated tip. The leaf sheath is broadly triangular, and the leaf scars do not form a continuous ring around the stem (Seagrass-Watch). A 2018 revision has also used the name Oceana serrulata for this plant.",
+    "ecologicalRole": "In a meadow it helps hold the sand and gives small coastal animals cover and feeding space. A seagrass meadow supports many more animals than bare sand (Seagrass-Watch).",
+    "conservationStatus": "Least Concern on the IUCN Red List (assessed 2008). It is widespread, and the global population is thought to be stable, with local losses from coastal development, pollution, dredging, and silt. It can recolonize after disturbance (IUCN; Short et al., 2011). That category is worldwide, not a count from Mati City.",
+    "habitat": "Shallow subtidal reef flats and sand banks (Seagrass-Watch). Listed among the nine seagrass species in coastal assessments of Mati City (Lawigan, Taitaidaga, Manguihay, and Pujada Bay; Angsinco-Jimenez et al., 2003; Fortes, 2013; Sanchez-Delute et al., 2025).",
+    "growthProcess": "The patch spreads mainly when the buried rhizome grows and sends up new shoots. The plant can also flower and set seed. It is described as fast growing and able to recolonize after disturbance (Seagrass-Watch; IUCN).",
+    "sources": [
+      "Seagrass-Watch. How to identify seagrass. https://www.seagrasswatch.org/idseagrass/",
+      "IUCN Red List. Cymodocea serrulata. https://www.iucnredlist.org/species/173358/6998619",
+      "Short, F. T., et al. (2011). Biological Conservation, 144, 1961–1971.",
+      "Wild Singapore. Seagrasses on Singapore shores. http://wildsingapore.com/wildfacts/plants/seagrass/seagrassfi.htm"
+    ]
   },
   {
     "slug": "enhalus_acoroides",
     "scientificName": "Enhalus acoroides",
-    "commonName": "TBD — adviser source",
-    "botanicalCharacteristics": "TBD — adviser source",
-    "ecologicalRole": "TBD — adviser source",
-    "conservationStatus": "TBD — adviser source",
-    "habitat": "TBD — adviser source",
-    "growthProcess": "TBD — adviser source"
+    "commonName": "Tape seagrass",
+    "botanicalCharacteristics": "Very long ribbon-like leaves, about 30–150 cm, with inrolled margins. The rhizome is thick, with long black bristles and cord-like roots (Seagrass-Watch).",
+    "ecologicalRole": "Its long leaves and thick rhizomes are part of shallow meadows that hold sediment and shelter coastal animals. A seagrass meadow supports many more animals than bare sand (Seagrass-Watch). The IUCN assessment notes local declines where the coast is disturbed.",
+    "conservationStatus": "Least Concern on the IUCN Red List (assessed 2007). It is widespread, but the global population is most likely declining because of local threats (IUCN; Short et al., 2011). That category is worldwide, not a count from Mati City.",
+    "habitat": "Shallow and intertidal sand or mud banks, often next to mangrove forest (Seagrass-Watch). Listed among the nine seagrass species in coastal assessments of Mati City (Lawigan, Taitaidaga, Manguihay, and Pujada Bay; Angsinco-Jimenez et al., 2003; Fortes, 2013; Sanchez-Delute et al., 2025).",
+    "growthProcess": "The meadow spreads by the thick buried rhizome. Male and female flowers are on separate plants. Male flowers float and can meet the female flower at the water surface. The fruit later splits and releases seeds (Wild Singapore, after Waycott et al., 2004).",
+    "sources": [
+      "Seagrass-Watch. How to identify seagrass. https://www.seagrasswatch.org/idseagrass/",
+      "IUCN Red List. Enhalus acoroides. https://www.iucnredlist.org/species/173331/6992567",
+      "Short, F. T., et al. (2011). Biological Conservation, 144, 1961–1971.",
+      "Wild Singapore. Tape seagrass. https://www.wildsingapore.com/wildfacts/plants/seagrass/enhalus.htm"
+    ]
   },
   {
     "slug": "halodule_pinifolia",
     "scientificName": "Halodule pinifolia",
-    "commonName": "TBD — adviser source",
-    "botanicalCharacteristics": "TBD — adviser source",
-    "ecologicalRole": "TBD — adviser source",
-    "conservationStatus": "TBD — adviser source",
-    "habitat": "TBD — adviser source",
-    "growthProcess": "TBD — adviser source"
+    "commonName": "Needle seagrass",
+    "botanicalCharacteristics": "Fine leaves up to about 20 cm long, with one central vein. That dark vein splits in two at a rounded leaf tip. The rhizome is usually pale, with clean black leaf scars. The rounded tip separates it from Halodule uninervis, which has a trident tip (Seagrass-Watch). Needle seagrass is also used as the common name of H. uninervis (Wild Singapore).",
+    "ecologicalRole": "On sand banks it forms a fine meadow that holds sediment and gives small animals cover. A seagrass meadow supports many more animals than bare sand (Seagrass-Watch).",
+    "conservationStatus": "Least Concern on the IUCN Red List. Short et al. (2011) report the global population trend as decreasing. That category is worldwide, not a count from Mati City.",
+    "habitat": "Intertidal sand banks (Seagrass-Watch). Native from tropical and subtropical Asia to the western Pacific, including the Philippines (Plants of the World Online). Listed among the nine seagrass species in coastal assessments of Mati City (Lawigan, Taitaidaga, Manguihay, and Pujada Bay; Angsinco-Jimenez et al., 2003; Fortes, 2013; Sanchez-Delute et al., 2025).",
+    "growthProcess": "The patch spreads mainly when the buried rhizome grows and sends up new shoots. The plant can also flower and set seed (Seagrass-Watch).",
+    "sources": [
+      "Seagrass-Watch. How to identify seagrass. https://www.seagrasswatch.org/idseagrass/",
+      "Short, F. T., et al. (2011). Biological Conservation, 144, 1961–1971.",
+      "Plants of the World Online. Halodule pinifolia. http://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:602955-1",
+      "Wild Singapore. Seagrasses on Singapore shores. http://wildsingapore.com/wildfacts/plants/seagrass/seagrassfi.htm"
+    ]
   },
   {
     "slug": "halodule_uninervis",
     "scientificName": "Halodule uninervis",
-    "commonName": "TBD — adviser source",
-    "botanicalCharacteristics": "TBD — adviser source",
-    "ecologicalRole": "TBD — adviser source",
-    "conservationStatus": "TBD — adviser source",
-    "habitat": "TBD — adviser source",
-    "growthProcess": "TBD — adviser source"
+    "commonName": "Needle seagrass",
+    "botanicalCharacteristics": "Usually larger than Halodule pinifolia, with one central vein and a trident leaf tip. The rhizome is usually pale ivory, with clean black leaf scars (Seagrass-Watch). The same common name, needle seagrass, is also used for H. pinifolia (Wild Singapore).",
+    "ecologicalRole": "Seagrass-Watch lists it as a preferred food of dugongs. On sand or mud banks it also holds sediment and shelters small animals. A seagrass meadow supports many more animals than bare sand (Seagrass-Watch).",
+    "conservationStatus": "Least Concern on the IUCN Red List (assessed 2007). It is widespread, and the global population is thought to be stable, with some local declines and increases (IUCN; Short et al., 2011). That category is worldwide, not a count from Mati City.",
+    "habitat": "Shallow and intertidal sand or mud banks (Seagrass-Watch). Listed among the nine seagrass species in coastal assessments of Mati City (Lawigan, Taitaidaga, Manguihay, and Pujada Bay; Angsinco-Jimenez et al., 2003; Fortes, 2013; Sanchez-Delute et al., 2025).",
+    "growthProcess": "The patch spreads mainly when the buried rhizome grows and sends up new shoots. The plant can also flower and set seed (Seagrass-Watch).",
+    "sources": [
+      "Seagrass-Watch. How to identify seagrass. https://www.seagrasswatch.org/idseagrass/",
+      "IUCN Red List. Halodule uninervis. https://www.iucnredlist.org/species/173328/6991773",
+      "Short, F. T., et al. (2011). Biological Conservation, 144, 1961–1971."
+    ]
   },
   {
     "slug": "halophila_minor",
     "scientificName": "Halophila minor",
-    "commonName": "TBD — adviser source",
-    "botanicalCharacteristics": "TBD — adviser source",
-    "ecologicalRole": "TBD — adviser source",
-    "conservationStatus": "TBD — adviser source",
-    "habitat": "TBD — adviser source",
-    "growthProcess": "TBD — adviser source"
+    "commonName": "Small spoon seagrass",
+    "botanicalCharacteristics": "Small oval leaves in pairs, with fewer than eight pairs of cross veins, smooth margins, and a wedge-shaped leaf sheath. The smaller leaf and fewer veins separate it from Halophila ovalis (Seagrass-Watch). Spoon seagrass is the name often used for the wider H. ovalis complex (Wild Singapore).",
+    "ecologicalRole": "On sand flats its small leaves are part of the meadow that holds sediment and shelters small animals. A seagrass meadow supports many more animals than bare sand (Seagrass-Watch).",
+    "conservationStatus": "Least Concern on the IUCN Red List. Short et al. (2011) report the global population trend as unknown. That category is worldwide, not a count from Mati City.",
+    "habitat": "Shallow and intertidal sand flats (Seagrass-Watch). Listed among the nine seagrass species in coastal assessments of Mati City (Lawigan, Taitaidaga, Manguihay, and Pujada Bay; Angsinco-Jimenez et al., 2003; Fortes, 2013; Sanchez-Delute et al., 2025).",
+    "growthProcess": "Leaves arise in pairs from the rhizome. The patch spreads mainly when that buried rhizome grows. The plant can also flower and set seed (Seagrass-Watch).",
+    "sources": [
+      "Seagrass-Watch. How to identify seagrass. https://www.seagrasswatch.org/idseagrass/",
+      "Short, F. T., et al. (2011). Biological Conservation, 144, 1961–1971.",
+      "Wild Singapore. Seagrasses on Singapore shores. http://wildsingapore.com/wildfacts/plants/seagrass/seagrassfi.htm"
+    ]
   },
   {
     "slug": "halophila_ovalis",
     "scientificName": "Halophila ovalis",
-    "commonName": "TBD — adviser source",
-    "botanicalCharacteristics": "TBD — adviser source",
-    "ecologicalRole": "TBD — adviser source",
-    "conservationStatus": "TBD — adviser source",
-    "habitat": "TBD — adviser source",
-    "growthProcess": "TBD — adviser source"
+    "commonName": "Spoon seagrass",
+    "botanicalCharacteristics": "Oval leaves in pairs, with eight or more cross veins and no hairs on the leaf surface (Seagrass-Watch).",
+    "ecologicalRole": "Seagrass-Watch lists it as a preferred food of dugongs and as a common early coloniser of open ground. A seagrass meadow supports many more animals than bare sand (Seagrass-Watch).",
+    "conservationStatus": "Least Concern on the IUCN Red List. Short et al. (2011) report the global population trend as stable. That category is worldwide, not a count from Mati City.",
+    "habitat": "From intertidal shores down to subtidal depths (Seagrass-Watch). Listed among the nine seagrass species in coastal assessments of Mati City (Lawigan, Taitaidaga, Manguihay, and Pujada Bay; Angsinco-Jimenez et al., 2003; Fortes, 2013; Sanchez-Delute et al., 2025).",
+    "growthProcess": "It is a common early coloniser, so new patches can appear on open ground. The patch then spreads mainly by rhizome growth, and the plant can also flower and set seed (Seagrass-Watch).",
+    "sources": [
+      "Seagrass-Watch. How to identify seagrass. https://www.seagrasswatch.org/idseagrass/",
+      "Short, F. T., et al. (2011). Biological Conservation, 144, 1961–1971.",
+      "Wild Singapore. Seagrasses on Singapore shores. http://wildsingapore.com/wildfacts/plants/seagrass/seagrassfi.htm"
+    ]
   },
   {
     "slug": "syringodium_isoetifolium",
     "scientificName": "Syringodium isoetifolium",
-    "commonName": "TBD — adviser source",
-    "botanicalCharacteristics": "TBD — adviser source",
-    "ecologicalRole": "TBD — adviser source",
-    "conservationStatus": "TBD — adviser source",
-    "habitat": "TBD — adviser source",
-    "growthProcess": "TBD — adviser source"
+    "commonName": "Noodle seagrass",
+    "botanicalCharacteristics": "Leaves are cylindrical in cross section, like spaghetti, and the tip tapers to a point. Leaves are about 7–30 cm long (Seagrass-Watch).",
+    "ecologicalRole": "In a meadow the cylindrical leaves help hold the bank and give small animals cover. A seagrass meadow supports many more animals than bare sand (Seagrass-Watch).",
+    "conservationStatus": "Least Concern on the IUCN Red List. Short et al. (2011) report the global population trend as stable. That category is worldwide, not a count from Mati City.",
+    "habitat": "Shallow subtidal reef flats and sand banks (Seagrass-Watch). Listed among the nine seagrass species in coastal assessments of Mati City (Lawigan, Taitaidaga, Manguihay, and Pujada Bay; Angsinco-Jimenez et al., 2003; Fortes, 2013; Sanchez-Delute et al., 2025).",
+    "growthProcess": "The patch spreads mainly when the buried rhizome grows and sends up new shoots. The plant can also flower and set seed (Seagrass-Watch).",
+    "sources": [
+      "Seagrass-Watch. How to identify seagrass. https://www.seagrasswatch.org/idseagrass/",
+      "Short, F. T., et al. (2011). Biological Conservation, 144, 1961–1971.",
+      "Wild Singapore. Seagrasses on Singapore shores. http://wildsingapore.com/wildfacts/plants/seagrass/seagrassfi.htm"
+    ]
   },
   {
     "slug": "thalassia_hemprichii",
     "scientificName": "Thalassia hemprichii",
-    "commonName": "TBD — adviser source",
-    "botanicalCharacteristics": "TBD — adviser source",
-    "ecologicalRole": "TBD — adviser source",
-    "conservationStatus": "TBD — adviser source",
-    "habitat": "TBD — adviser source",
-    "growthProcess": "TBD — adviser source"
+    "commonName": "Sickle seagrass",
+    "botanicalCharacteristics": "Curved ribbon-like leaves about 10–40 cm long, with short black bars of tannin cells in the blade. The rhizome is thick, with scars between the shoots (Seagrass-Watch).",
+    "ecologicalRole": "It is common on shallow reef flats, where the meadow holds sediment and shelters small animals. A seagrass meadow supports many more animals than bare sand (Seagrass-Watch).",
+    "conservationStatus": "Least Concern on the IUCN Red List. Short et al. (2011) report the global population trend as stable. That category is worldwide, not a count from Mati City.",
+    "habitat": "Shallow reef flats (Seagrass-Watch). Listed among the nine seagrass species in coastal assessments of Mati City (Lawigan, Taitaidaga, Manguihay, and Pujada Bay; Angsinco-Jimenez et al., 2003; Fortes, 2013; Sanchez-Delute et al., 2025).",
+    "growthProcess": "The patch spreads mainly when the thick buried rhizome grows and sends up new shoots. The plant can also flower and set seed (Seagrass-Watch).",
+    "sources": [
+      "Seagrass-Watch. How to identify seagrass. https://www.seagrasswatch.org/idseagrass/",
+      "Short, F. T., et al. (2011). Biological Conservation, 144, 1961–1971.",
+      "Wild Singapore. Seagrasses on Singapore shores. http://wildsingapore.com/wildfacts/plants/seagrass/seagrassfi.htm"
+    ]
   }
 ]

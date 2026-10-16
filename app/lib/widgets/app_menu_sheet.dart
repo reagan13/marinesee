@@ -48,7 +48,7 @@ class AppMenuSheet extends StatelessWidget {
             SettingsTile(
               icon: Icons.view_in_ar_outlined,
               label: '3D models',
-              subtitle: 'Playback placeholder for each species',
+              subtitle: 'Clip, or rotate a bundled model',
               onTap: () => _open(context, const Models3dScreen()),
             ),
             SettingsTile(
@@ -60,7 +60,7 @@ class AppMenuSheet extends StatelessWidget {
             SettingsTile(
               icon: Icons.person_outline,
               label: 'Profile',
-              subtitle: 'Photo, first name, last name',
+              subtitle: 'Name for the home greeting',
               onTap: () => _open(context, const ProfileScreen()),
             ),
           ],

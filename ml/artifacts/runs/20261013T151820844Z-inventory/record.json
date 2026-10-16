@@ -1,0 +1,205 @@
+{
+  "kind": "inventory",
+  "runtime": "local",
+  "source": "local-machine",
+  "drive_folder_id": "1MU31a5BG3MKn1fEYV-ljhc2zS4CoE79F",
+  "data_root": "D:\\pepot\\marinesee\\assets\\species\\Seagrass",
+  "root": "D:\\pepot\\marinesee\\assets\\species\\Seagrass",
+  "folders": [
+    {
+      "folder": "Cymodocea rotundata dataset",
+      "path": "D:\\pepot\\marinesee\\assets\\species\\Seagrass\\Cymodocea rotundata dataset",
+      "slug": "cymodocea_rotundata",
+      "scope": "study",
+      "variant": "all",
+      "images": 158
+    },
+    {
+      "folder": "Cymodocea rotundata dataset (research-grade)",
+      "path": "D:\\pepot\\marinesee\\assets\\species\\Seagrass\\Cymodocea rotundata dataset (research-grade)",
+      "slug": "cymodocea_rotundata",
+      "scope": "study",
+      "variant": "research-grade",
+      "images": 57
+    },
+    {
+      "folder": "Cymodocea serrulata dataset (all)",
+      "path": "D:\\pepot\\marinesee\\assets\\species\\Seagrass\\Cymodocea serrulata dataset (all)",
+      "slug": "cymodocea_serrulata",
+      "scope": "study",
+      "variant": "all",
+      "images": 87
+    },
+    {
+      "folder": "Cymodocea serrulata dataset (research-grade)",
+      "path": "D:\\pepot\\marinesee\\assets\\species\\Seagrass\\Cymodocea serrulata dataset (research-grade)",
+      "slug": "cymodocea_serrulata",
+      "scope": "study",
+      "variant": "research-grade",
+      "images": 15
+    },
+    {
+      "folder": "Enhalus acoroides dataset (all)",
+      "path": "D:\\pepot\\marinesee\\assets\\species\\Seagrass\\Enhalus acoroides dataset (all)",
+      "slug": "enhalus_acoroides",
+      "scope": "study",
+      "variant": "all",
+      "images": 666
+    },
+    {
+      "folder": "Enhalus acoroides dataset (research-grade)",
+      "path": "D:\\pepot\\marinesee\\assets\\species\\Seagrass\\Enhalus acoroides dataset (research-grade)",
+      "slug": "enhalus_acoroides",
+      "scope": "study",
+      "variant": "research-grade",
+      "images": 362
+    },
+    {
+      "folder": "Halodule pinifolia dataset (all)",
+      "path": "D:\\pepot\\marinesee\\assets\\species\\Seagrass\\Halodule pinifolia dataset (all)",
+      "slug": "halodule_pinifolia",
+      "scope": "study",
+      "variant": "all",
+      "images": 85
+    },
+    {
+      "folder": "Halodule pinifolia dataset (research-grade)",
+      "path": "D:\\pepot\\marinesee\\assets\\species\\Seagrass\\Halodule pinifolia dataset (research-grade)",
+      "slug": "halodule_pinifolia",
+      "scope": "study",
+      "variant": "research-grade",
+      "images": 19
+    },
+    {
+      "folder": "Halodule uninervis dataset (all)",
+      "path": "D:\\pepot\\marinesee\\assets\\species\\Seagrass\\Halodule uninervis dataset (all)",
+      "slug": "halodule_uninervis",
+      "scope": "study",
+      "variant": "all",
+      "images": 375
+    },
+    {
+      "folder": "Halodule uninervis dataset (research-grade)",
+      "path": "D:\\pepot\\marinesee\\assets\\species\\Seagrass\\Halodule uninervis dataset (research-grade)",
+      "slug": "halodule_uninervis",
+      "scope": "study",
+      "variant": "research-grade",
+      "images": 148
+    },
+    {
+      "folder": "Halophila minor dataset (all)",
+      "path": "D:\\pepot\\marinesee\\assets\\species\\Seagrass\\Halophila minor dataset (all)",
+      "slug": "halophila_minor",
+      "scope": "study",
+      "variant": "all",
+      "images": 24
+    },
+    {
+      "folder": "Halophila minor dataset (research-grade)",
+      "path": "D:\\pepot\\marinesee\\assets\\species\\Seagrass\\Halophila minor dataset (research-grade)",
+      "slug": "halophila_minor",
+      "scope": "study",
+      "variant": "research-grade",
+      "images": 3
+    },
+    {
+      "folder": "Halophila ovalis dataset (all)",
+      "path": "D:\\pepot\\marinesee\\assets\\species\\Seagrass\\Halophila ovalis dataset (all)",
+      "slug": "halophila_ovalis",
+      "scope": "study",
+      "variant": "all",
+      "images": 619
+    },
+    {
+      "folder": "Halophila ovalis dataset (research-grade)",
+      "path": "D:\\pepot\\marinesee\\assets\\species\\Seagrass\\Halophila ovalis dataset (research-grade)",
+      "slug": "halophila_ovalis",
+      "scope": "study",
+      "variant": "research-grade",
+      "images": 378
+    },
+    {
+      "folder": "Syringodium isoetifolium dataset (all)",
+      "path": "D:\\pepot\\marinesee\\assets\\species\\Seagrass\\Syringodium isoetifolium dataset (all)",
+      "slug": "syringodium_isoetifolium",
+      "scope": "study",
+      "variant": "all",
+      "images": 161
+    },
+    {
+      "folder": "Syringodium isoetifolium dataset (research-grade)",
+      "path": "D:\\pepot\\marinesee\\assets\\species\\Seagrass\\Syringodium isoetifolium dataset (research-grade)",
+      "slug": "syringodium_isoetifolium",
+      "scope": "study",
+      "variant": "research-grade",
+      "images": 48
+    },
+    {
+      "folder": "Thalassia hemprichii dataset (all)",
+      "path": "D:\\pepot\\marinesee\\assets\\species\\Seagrass\\Thalassia hemprichii dataset (all)",
+      "slug": "thalassia_hemprichii",
+      "scope": "study",
+      "variant": "all",
+      "images": 743
+    },
+    {
+      "folder": "Thalassia hemprichii dataset (research-grade)",
+      "path": "D:\\pepot\\marinesee\\assets\\species\\Seagrass\\Thalassia hemprichii dataset (research-grade)",
+      "slug": "thalassia_hemprichii",
+      "scope": "study",
+      "variant": "research-grade",
+      "images": 246
+    }
+  ],
+  "by_study": {
+    "cymodocea_rotundata": {
+      "all": 158,
+      "research-grade": 57
+    },
+    "cymodocea_serrulata": {
+      "all": 87,
+      "research-grade": 15
+    },
+    "enhalus_acoroides": {
+      "all": 666,
+      "research-grade": 362
+    },
+    "halodule_pinifolia": {
+      "all": 85,
+      "research-grade": 19
+    },
+    "halodule_uninervis": {
+      "all": 375,
+      "research-grade": 148
+    },
+    "halophila_minor": {
+      "all": 24,
+      "research-grade": 3
+    },
+    "halophila_ovalis": {
+      "all": 619,
+      "research-grade": 378
+    },
+    "syringodium_isoetifolium": {
+      "all": 161,
+      "research-grade": 48
+    },
+    "thalassia_hemprichii": {
+      "all": 743,
+      "research-grade": 246
+    }
+  },
+  "extra": [],
+  "unknown": [],
+  "missing": [],
+  "recorded_at": "2026-10-13T15:18:20Z",
+  "run_id": "20261013T151820844Z",
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "numpy": "2.5.4",
+    "sklearn": "1.9.1",
+    "skimage": "0.26.0"
+  },
+  "run_dir": "D:\\pepot\\marinesee\\ml\\artifacts\\runs\\20261013T151820844Z-inventory"
+}

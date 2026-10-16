@@ -55,7 +55,7 @@ class _Models3dScreenState extends State<Models3dScreen> {
           return OceanPage(
             children: [
               Text(
-                'Playback only. Drop a .glb or growth .mp4 — modeling stays outside this repo.',
+                'A bundled .glb can be rotated and zoomed. A growth clip plays when that is the only file.',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               const SizedBox(height: 16),

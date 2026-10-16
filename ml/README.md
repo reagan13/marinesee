@@ -1,10 +1,17 @@
 # `ml/` — SVM training
 
-Code for preprocess, feature extraction, train, and eval. **Run it on Google Colab** with the Drive dataset mounted.
+Code for preprocess, feature extraction, train, and eval. Local machine uses the repo-root `.venv` (Python 3.12, CPU). Colab remains the path when the photos stay on Drive.
 
 - Pipeline rules: `../docs/09-ml-pipeline.md`
 - Colab workflow: `../docs/12-colab-and-training.md`
 - Class slugs: `../docs/11-species.md`
+
+Local setup (already created on this machine as `.venv`):
+
+```bat
+py -3.12 -m venv .venv
+.venv\Scripts\python.exe -m pip install -r ml\requirements.txt
+```
 
 ```text
 notebooks/    Colab-ready notebooks

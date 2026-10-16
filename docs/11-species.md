@@ -40,7 +40,7 @@ The shared [Seagrass](https://drive.google.com/drive/folders/1MU31a5BG3MKn1fEYV-
 - Habitat / distribution notes for Mati (educational, not GIS)
 - Growth / development process
 
-**OPEN:** the actual paragraph text per species. Do not invent IUCN or local conservation wording. Pull from the cited references and adviser-approved sources, then paste into the library.
+**IMPLEMENTATION:** a cited draft of those paragraphs is in `app/assets/data/species.json`. Global IUCN categories come from Short et al. (2011) and the IUCN Red List pages linked there. They are not a Mati City survey. An adviser should still check the wording before it is treated as final study text.
 
 ## Conservation status wording
 

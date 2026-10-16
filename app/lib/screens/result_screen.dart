@@ -2,13 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../classify/classifier.dart';
-import '../classify/stub_classifier.dart';
 import '../data/species.dart';
 import '../data/species_catalog.dart';
+import '../theme/tokens.dart';
 import '../widgets/aurora_button.dart';
 import '../widgets/ocean_layout.dart';
 import '../widgets/ocean_surface.dart';
-import '../widgets/status_badge.dart';
 import 'species_screen.dart';
 import 'viewer_3d_screen.dart';
 
@@ -24,31 +23,15 @@ class ResultScreen extends StatelessWidget {
   final IdentifyResult result;
   final SpeciesCatalog? catalog;
 
+  static const retakeSentence =
+      'Low confidence — retake if you can get a closer leaf.';
+
   @override
   Widget build(BuildContext context) {
-    if (result.status == IdentifyStatus.stub) {
+    if (result.slug == null) {
       return _ResultScaffold(
         imageBytes: imageBytes,
-        badge: const StatusBadge(
-          label: 'Model offline',
-          icon: Icons.cloud_off_outlined,
-          tone: StatusTone.notice,
-        ),
-        title: StubClassifier.notConnectedMessage,
-        actions: const [],
-      );
-    }
-
-    if (result.status == IdentifyStatus.error || result.slug == null) {
-      return _ResultScaffold(
-        imageBytes: imageBytes,
-        badge: const StatusBadge(
-          label: 'Error',
-          icon: Icons.error_outline,
-          tone: StatusTone.danger,
-        ),
-        title: result.message ?? 'Identification did not finish.',
-        actions: const [],
+        error: result.message ?? 'Identification did not finish.',
       );
     }
 
@@ -56,6 +39,10 @@ class ResultScreen extends StatelessWidget {
     return FutureBuilder<Species?>(
       future: (catalog ?? speciesCatalog).bySlug(slug),
       builder: (context, snapshot) {
+        if (!snapshot.hasData &&
+            snapshot.connectionState != ConnectionState.done) {
+          return _ResultScaffold(imageBytes: imageBytes, loading: true);
+        }
         final species = snapshot.data;
         final low = result.status == IdentifyStatus.lowConfidence;
         final percent = result.confidence == null
@@ -63,22 +50,9 @@ class ResultScreen extends StatelessWidget {
             : '${(result.confidence! * 100).toStringAsFixed(0)}%';
         return _ResultScaffold(
           imageBytes: imageBytes,
-          badge: StatusBadge(
-            label: low ? 'Low confidence' : 'Match',
-            icon: low
-                ? Icons.help_outline
-                : Icons.check_circle_outline,
-            tone: low ? StatusTone.notice : StatusTone.neutral,
-          ),
-          title: species?.scientificName ?? slug.replaceAll('_', ' '),
-          subtitle: [
-            if (species != null) species.commonName,
-            if (percent != null) 'Confidence $percent',
-            if (low)
-              result.message ??
-                  'Low confidence — retake if you can get a closer leaf.',
-          ].join('\n'),
-          italicTitle: true,
+          scientificName: species?.scientificName ?? slug.replaceAll('_', ' '),
+          percent: percent,
+          notice: low ? (result.message ?? retakeSentence) : null,
           actions: [
             AuroraButton(
               label: 'Open species profile',
@@ -101,7 +75,7 @@ class ResultScreen extends StatelessWidget {
                 );
               },
               icon: const Icon(Icons.view_in_ar_outlined),
-              label: const Text('Open 3D model'),
+              label: const Text('Open 3D'),
             ),
           ],
         );
@@ -113,18 +87,20 @@ class ResultScreen extends StatelessWidget {
 class _ResultScaffold extends StatelessWidget {
   const _ResultScaffold({
     required this.imageBytes,
-    required this.badge,
-    required this.title,
-    this.subtitle,
-    this.italicTitle = false,
-    required this.actions,
+    this.scientificName,
+    this.percent,
+    this.notice,
+    this.error,
+    this.loading = false,
+    this.actions = const [],
   });
 
   final Uint8List imageBytes;
-  final Widget badge;
-  final String title;
-  final String? subtitle;
-  final bool italicTitle;
+  final String? scientificName;
+  final String? percent;
+  final String? notice;
+  final String? error;
+  final bool loading;
   final List<Widget> actions;
 
   @override
@@ -136,10 +112,9 @@ class _ResultScaffold extends StatelessWidget {
       body: OceanPage(
         children: [
           OceanSurface(
-            glow: true,
             padding: EdgeInsets.zero,
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: 320),
+              constraints: const BoxConstraints(maxHeight: 280),
               child: Image.memory(
                 imageBytes,
                 fit: BoxFit.contain,
@@ -147,27 +122,40 @@ class _ResultScaffold extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 18),
-          OceanSurface(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                badge,
-                const SizedBox(height: 14),
-                Text(
-                  title,
-                  style: text.headlineSmall?.copyWith(
-                    fontStyle: italicTitle ? FontStyle.italic : null,
-                  ),
-                ),
-                if (subtitle != null && subtitle!.isNotEmpty) ...[
-                  const SizedBox(height: 10),
-                  Text(subtitle!, style: text.bodyMedium),
+          const SizedBox(height: 16),
+          if (loading)
+            const OceanSurface(
+              child: Center(child: CircularProgressIndicator(strokeWidth: 2.4)),
+            )
+          else
+            OceanSurface(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (scientificName != null) ...[
+                    Text(
+                      scientificName!,
+                      style: text.headlineSmall?.copyWith(
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                  ],
+                  if (percent != null) ...[
+                    Text('Confidence', style: text.labelMedium),
+                    const SizedBox(height: 4),
+                    Text(percent!, style: text.headlineSmall),
+                  ],
+                  if (notice != null) ...[
+                    const SizedBox(height: 14),
+                    _Notice(message: notice!, tone: _NoticeTone.notice),
+                  ],
+                  if (error != null)
+                    _Notice(message: error!, tone: _NoticeTone.danger),
                 ],
-              ],
+              ),
             ),
-          ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 16),
           ...actions,
           if (actions.isNotEmpty) const SizedBox(height: 12),
           OutlinedButton.icon(
@@ -176,6 +164,59 @@ class _ResultScaffold extends StatelessWidget {
             label: const Text('Try again'),
           ),
         ],
+      ),
+    );
+  }
+}
+
+enum _NoticeTone { notice, danger }
+
+class _Notice extends StatelessWidget {
+  const _Notice({required this.message, required this.tone});
+
+  final String message;
+  final _NoticeTone tone;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+    final color = tone == _NoticeTone.danger ? tokens.danger : tokens.notice;
+    final fill = tone == _NoticeTone.danger
+        ? tokens.danger.withValues(alpha: 0.08)
+        : tokens.noticeFill;
+    final border = tone == _NoticeTone.danger
+        ? tokens.danger.withValues(alpha: 0.35)
+        : tokens.noticeBorder;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: fill,
+        borderRadius: BorderRadius.circular(AppRadius.md),
+        border: Border.all(color: border),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(
+              tone == _NoticeTone.danger
+                  ? Icons.error_outline
+                  : Icons.info_outline,
+              color: color,
+              size: 20,
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                message,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: color,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

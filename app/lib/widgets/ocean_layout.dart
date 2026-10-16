@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../theme/tokens.dart';
 import 'aurora_atmosphere.dart';
 
-/// Page chrome: optional sky atmosphere, transparent scaffold, mobile-first padding.
+/// Page chrome: light page, curved teal header, transparent scaffold.
 class OceanScaffold extends StatelessWidget {
   const OceanScaffold({
     super.key,
@@ -25,30 +25,58 @@ class OceanScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tokens = context.tokens;
     final bar = title == null
         ? null
         : AppBar(
             title: Text(title!, overflow: TextOverflow.ellipsis),
             actions: actions,
             leading: leading,
+            backgroundColor: Colors.transparent,
+            surfaceTintColor: Colors.transparent,
+            foregroundColor: SkyPalette.onHeader,
+            elevation: 0,
+            scrolledUnderElevation: 0,
+            iconTheme: const IconThemeData(color: SkyPalette.onHeader),
+            actionsIconTheme: const IconThemeData(color: SkyPalette.onHeader),
+            titleTextStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
+              color: SkyPalette.onHeader,
+            ),
+            flexibleSpace: ClipRRect(
+              borderRadius: const BorderRadius.vertical(
+                bottom: Radius.circular(28),
+              ),
+              child: DecoratedBox(
+                decoration: BoxDecoration(gradient: tokens.headerGradient),
+                child: const SizedBox.expand(),
+              ),
+            ),
           );
 
     final Widget content;
     if (title != null) {
       content = body;
     } else if (header != null) {
-      content = SafeArea(
-        bottom: false,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: AppSpace.headerInsets(context),
-              child: header,
+      content = Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ClipRRect(
+            borderRadius: const BorderRadius.vertical(
+              bottom: Radius.circular(28),
             ),
-            Expanded(child: body),
-          ],
-        ),
+            child: DecoratedBox(
+              decoration: BoxDecoration(gradient: tokens.headerGradient),
+              child: SafeArea(
+                bottom: false,
+                child: Padding(
+                  padding: AppSpace.headerInsets(context),
+                  child: header,
+                ),
+              ),
+            ),
+          ),
+          Expanded(child: body),
+        ],
       );
     } else {
       content = SafeArea(bottom: false, child: body);
@@ -69,7 +97,7 @@ class OceanScaffold extends StatelessWidget {
   }
 }
 
-/// Scrollable column capped at [AppSpace.maxContent] for tablet/desktop.
+/// Scrollable column capped at [AppSpace.maxContent] for tablet width.
 class OceanPage extends StatelessWidget {
   const OceanPage({
     super.key,

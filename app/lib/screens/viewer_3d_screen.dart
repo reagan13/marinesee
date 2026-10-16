@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../data/model_3d_library.dart';
 import '../theme/tokens.dart';
 import '../widgets/app_states.dart';
-import '../widgets/ocean_layout.dart';
-import '../widgets/ocean_surface.dart';
+import '../widgets/glb_viewer.dart';
 import '../widgets/species_clip_player.dart';
 
 class Viewer3dScreen extends StatefulWidget {
@@ -12,7 +12,8 @@ class Viewer3dScreen extends StatefulWidget {
 
   final String slug;
 
-  static const placeholderCopy = '3D model coming — drop a .glb or growth clip here later.';
+  static const placeholderCopy =
+      '3D model coming — drop a .glb or growth clip here later.';
 
   @override
   State<Viewer3dScreen> createState() => _Viewer3dScreenState();
@@ -31,130 +32,146 @@ class _Viewer3dScreenState extends State<Viewer3dScreen> {
     }
   }
 
+  void _reload() {
+    setState(() {
+      Model3dLibrary.resetCache();
+      _future = Model3dLibrary.resolve(widget.slug);
+      _videoFailed = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return OceanScaffold(
-      title: '3D',
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SkyPalette.lightStatusBar,
+      child: Scaffold(
+      backgroundColor: const Color(0xFF1E8C98),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.white,
+        systemOverlayStyle: SkyPalette.lightStatusBar,
+        iconTheme: const IconThemeData(color: Colors.white),
+        titleTextStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
+          color: Colors.white,
+          fontWeight: FontWeight.w700,
+        ),
+        centerTitle: true,
+        title: const Text('3D Viewer'),
+      ),
       body: FutureBuilder<SpeciesMedia>(
         future: _future,
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return OceanError(
-              message: 'Could not open this species clip.',
-              onRetry: () {
-                setState(() {
-                  Model3dLibrary.resetCache();
-                  _future = Model3dLibrary.resolve(widget.slug);
-                  _videoFailed = false;
-                });
-              },
+              message: 'Could not open this species model.',
+              onRetry: _reload,
             );
           }
           final media = snapshot.data;
           if (media == null) {
             return const OceanLoading(label: 'Opening 3D…');
           }
-          return _ViewerBody(
-            slug: widget.slug,
-            media: media,
-            videoFailed: _videoFailed,
-            onVideoFailed: () => setState(() => _videoFailed = true),
-          );
-        },
-      ),
-    );
-  }
-}
-
-class _ViewerBody extends StatelessWidget {
-  const _ViewerBody({
-    required this.slug,
-    required this.media,
-    required this.videoFailed,
-    required this.onVideoFailed,
-  });
-
-  final String slug;
-  final SpeciesMedia media;
-  final bool videoFailed;
-  final VoidCallback onVideoFailed;
-
-  @override
-  Widget build(BuildContext context) {
-    final showVideo = media.hasVideo && !videoFailed;
-    final showStill = media.hasStill && !showVideo;
-    final showGlbNote = media.hasModel && !showVideo;
-
-    if (!showVideo && !showStill && !showGlbNote) {
-      return Padding(
-        padding: AppSpace.pageInsets(context),
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 420),
+          if (media.hasModel) {
+            return ListView(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 28),
+              children: [
+                GlbViewer(assetPath: media.modelAsset!, label: widget.slug),
+                const SizedBox(height: 12),
+                _ModelNote(slug: widget.slug),
+              ],
+            );
+          }
+          if (media.hasVideo && !_videoFailed) {
+            return ListView(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 28),
+              children: [
+                SpeciesClipPlayer(
+                  assetPath: media.videoAsset!,
+                  onFailed: () => setState(() => _videoFailed = true),
+                ),
+                const SizedBox(height: 16),
+                _ModelNote(slug: widget.slug, clip: true),
+              ],
+            );
+          }
+          return Padding(
+            padding: const EdgeInsets.all(24),
             child: Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const OceanEmpty(
                   icon: Icons.view_in_ar_outlined,
                   title: Viewer3dScreen.placeholderCopy,
                   message: 'Playback only. Modeling stays outside this repo.',
                 ),
+                const SizedBox(height: 12),
+                _ModelNote(slug: widget.slug),
+              ],
+            ),
+          );
+        },
+      ),
+      ),
+    );
+  }
+}
+
+class _ModelNote extends StatelessWidget {
+  const _ModelNote({required this.slug, this.clip = false});
+
+  final String slug;
+  final bool clip;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    final name = slug.replaceAll('_', ' ');
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: SkyPalette.scanner.withValues(alpha: 0.55),
+        borderRadius: AppRadius.card,
+        border: Border.all(color: Colors.white.withValues(alpha: 0.16)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Model information',
+              style: text.titleMedium?.copyWith(color: Colors.white),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
                 Text(
-                  slug,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.labelMedium,
+                  'Species',
+                  style: text.bodyMedium?.copyWith(color: Colors.white70),
+                ),
+                const Spacer(),
+                Flexible(
+                  child: Text(
+                    name,
+                    textAlign: TextAlign.end,
+                    style: text.bodyMedium?.copyWith(
+                      color: Colors.white,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
                 ),
               ],
             ),
-          ),
-        ),
-      );
-    }
-
-    return OceanPage(
-      children: [
-        if (showVideo)
-          SpeciesClipPlayer(
-            assetPath: media.videoAsset!,
-            onFailed: onVideoFailed,
-          ),
-        if (showStill) ...[
-          if (showVideo) const SizedBox(height: 16),
-          OceanSurface(
-            glow: true,
-            padding: EdgeInsets.zero,
-            child: ClipRRect(
-              borderRadius: AppRadius.card,
-              child: Image.asset(
-                media.stillAsset!,
-                fit: BoxFit.cover,
-                width: double.infinity,
+            if (clip) ...[
+              const SizedBox(height: 8),
+              Text(
+                'Growth clip. Playback only — this repo does not author models.',
+                style: text.bodySmall?.copyWith(color: Colors.white70),
               ),
-            ),
-          ),
-        ],
-        const SizedBox(height: 16),
-        OceanSurface(
-          child: Text(
-            _caption(showVideo: showVideo, showStill: showStill, showGlbNote: showGlbNote),
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
+            ],
+          ],
         ),
-      ],
+      ),
     );
-  }
-
-  String _caption({
-    required bool showVideo,
-    required bool showStill,
-    required bool showGlbNote,
-  }) {
-    if (showVideo) {
-      return 'Growth clip for $slug. Playback only — this repo does not author models.';
-    }
-    if (showGlbNote) {
-      return 'A .glb is bundled for $slug. Rotate/zoom is not wired yet. Playback only.';
-    }
-    return 'Photo preview for $slug. Drop a growth .mp4 or .glb in assets/models-3d/ to replace this.';
   }
 }

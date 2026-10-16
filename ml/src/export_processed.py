@@ -21,6 +21,7 @@ try:
         TRAINABLE_SPECIES,
     )
     from .preprocess import PREPROCESS_SPEC, list_labeled_images, load_rgb_full, process_rgb
+    from .run_log import append_run
 except ImportError:
     from dataset_contract import (
         HELD_OUT_SPECIES,
@@ -31,6 +32,7 @@ except ImportError:
         TRAINABLE_SPECIES,
     )
     from preprocess import PREPROCESS_SPEC, list_labeled_images, load_rgb_full, process_rgb
+    from run_log import append_run
 
 
 def repo_root() -> Path:
@@ -187,6 +189,16 @@ def run(
     (dest / "manifest.json").write_text(json.dumps(rows, indent=2), encoding="utf-8")
     print("kept", summary["kept"], "skipped", summary["skipped"], "held_out", len(held_out))
     print("wrote", report_json)
+    root_text = str(root).replace("\\", "/")
+    append_run(
+        repo_root(),
+        {
+            "kind": "preprocess",
+            "runtime": "colab" if root_text.startswith("/content/") else "local",
+            "data_root": str(root),
+            **summary,
+        },
+    )
     return summary
 
 

@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../data/model_3d_library.dart';
 import '../data/species.dart';
 import '../data/species_catalog.dart';
 import '../theme/tokens.dart';
 import '../widgets/app_states.dart';
-import '../widgets/aurora_button.dart';
-import '../widgets/data_coming_badge.dart';
-import '../widgets/ocean_layout.dart';
-import '../widgets/ocean_surface.dart';
-import '../widgets/profile_field.dart';
-import '../widgets/section_header.dart';
-import '../widgets/status_badge.dart';
+import '../widgets/species_detail.dart';
 import 'viewer_3d_screen.dart';
 
 class SpeciesScreen extends StatefulWidget {
@@ -23,144 +18,84 @@ class SpeciesScreen extends StatefulWidget {
 }
 
 class _SpeciesScreenState extends State<SpeciesScreen> {
-  late Future<Species?> _future = speciesCatalog.bySlug(widget.slug);
+  late Future<_SpeciesProfile> _future = _load();
 
-  void _reload() {
-    setState(() {
-      _future = speciesCatalog.bySlug(widget.slug);
-    });
+  Future<_SpeciesProfile> _load() async {
+    final species = await speciesCatalog.bySlug(widget.slug);
+    final media = species == null
+        ? const SpeciesMedia()
+        : await Model3dLibrary.resolve(species.slug);
+    return _SpeciesProfile(species: species, media: media);
   }
+
+  void _reload() => setState(() => _future = _load());
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Species?>(
-      future: _future,
-      builder: (context, snapshot) {
-        return OceanScaffold(
-          title: snapshot.data?.scientificName ?? 'Species',
-          body: _body(context, snapshot),
-        );
-      },
+    return Scaffold(
+      backgroundColor: context.tokens.abyss,
+      body: FutureBuilder<_SpeciesProfile>(
+        future: _future,
+        builder: (context, snapshot) => _body(context, snapshot),
+      ),
     );
   }
 
-  Widget _body(BuildContext context, AsyncSnapshot<Species?> snapshot) {
+  Widget _withBack(BuildContext context, Widget child) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        SafeArea(
+          bottom: false,
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: IconButton(
+              onPressed: () => Navigator.of(context).pop(),
+              icon: const Icon(Icons.arrow_back),
+            ),
+          ),
+        ),
+        Expanded(child: child),
+      ],
+    );
+  }
+
+  Widget _body(BuildContext context, AsyncSnapshot<_SpeciesProfile> snapshot) {
     if (snapshot.hasError) {
-      return OceanError(
-        message: 'Could not load this species.',
-        onRetry: _reload,
+      return _withBack(
+        context,
+        OceanError(
+          message: 'Could not load this species.',
+          onRetry: _reload,
+        ),
       );
     }
     if (!snapshot.hasData && snapshot.connectionState != ConnectionState.done) {
-      return const OceanLoading(label: 'Loading profile…');
+      return _withBack(context, const OceanLoading(label: 'Loading profile…'));
     }
-    final species = snapshot.data;
+    final species = snapshot.data?.species;
     if (species == null) {
-      return const OceanEmpty(
-        icon: Icons.search_off,
-        title: 'Species not found',
-        message: 'This slug is not in the bundled library.',
+      return _withBack(
+        context,
+        const OceanEmpty(
+          icon: Icons.search_off,
+          title: 'Species not found',
+          message: 'This slug is not in the bundled library.',
+        ),
       );
     }
 
-    final tokens = context.tokens;
-    final text = Theme.of(context).textTheme;
+    final still = snapshot.data?.media.stillAsset;
+    final width = MediaQuery.sizeOf(context).width;
+    final horizontal = width >= 768 ? 32.0 : 20.0;
 
-    return OceanPage(
+    return ListView(
+      padding: const EdgeInsets.only(bottom: 28),
       children: [
-        OceanSurface(
-          glow: true,
-          child: Column(
-            children: [
-              Icon(Icons.eco_outlined, size: 40, color: tokens.brand),
-              const SizedBox(height: 12),
-              Text(
-                species.scientificName,
-                textAlign: TextAlign.center,
-                style: text.headlineSmall?.copyWith(
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
-              const SizedBox(height: 6),
-              Text(
-                species.commonName,
-                textAlign: TextAlign.center,
-                style: text.titleMedium,
-              ),
-              const SizedBox(height: 12),
-              StatusBadge(
-                label: species.conservationStatus,
-                icon: Icons.shield_outlined,
-              ),
-              if (species.dataComing) ...[
-                const SizedBox(height: 10),
-                const DataComingBadge(),
-              ],
-            ],
-          ),
-        ),
-        const SizedBox(height: 22),
-        const SectionHeader(title: 'Identity'),
-        const SizedBox(height: 10),
-        OceanSurface(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ProfileField(
-                label: 'Scientific name',
-                value: species.scientificName,
-                italic: true,
-              ),
-              const OceanDivider(),
-              ProfileField(label: 'Common name', value: species.commonName),
-            ],
-          ),
-        ),
-        const SizedBox(height: 18),
-        const SectionHeader(title: 'Ecology'),
-        const SizedBox(height: 10),
-        OceanSurface(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ProfileField(
-                label: 'Botanical characteristics',
-                value: species.botanicalCharacteristics,
-              ),
-              const OceanDivider(),
-              ProfileField(
-                label: 'Ecological role',
-                value: species.ecologicalRole,
-              ),
-              const OceanDivider(),
-              ProfileField(
-                label: 'Conservation status',
-                value: species.conservationStatus,
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 18),
-        const SectionHeader(title: 'Place'),
-        const SizedBox(height: 10),
-        OceanSurface(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ProfileField(label: 'Habitat', value: species.habitat),
-              const OceanDivider(),
-              ProfileField(
-                label: 'Growth process',
-                value: species.growthProcess,
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 20),
-        AuroraButton(
-          label: 'Open 3D model',
-          icon: Icons.view_in_ar_outlined,
-          onPressed: () {
+        SpeciesHero(
+          stillAsset: still,
+          onBack: () => Navigator.of(context).pop(),
+          onView3d: () {
             Navigator.of(context).push(
               MaterialPageRoute<void>(
                 builder: (_) => Viewer3dScreen(slug: species.slug),
@@ -168,7 +103,56 @@ class _SpeciesScreenState extends State<SpeciesScreen> {
             );
           },
         ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: horizontal),
+          child: Transform.translate(
+            offset: const Offset(0, -36),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SpeciesNameCard(species: species),
+                const SizedBox(height: 16),
+                SpeciesFactCard(
+                  icon: Icons.spa_outlined,
+                  title: 'Botanical characteristics',
+                  value: species.botanicalCharacteristics,
+                ),
+                const SizedBox(height: 12),
+                SpeciesFactCard(
+                  icon: Icons.water_outlined,
+                  title: 'Ecological role',
+                  value: species.ecologicalRole,
+                ),
+                const SizedBox(height: 12),
+                SpeciesFactCard(
+                  icon: Icons.shield_outlined,
+                  title: 'Conservation status',
+                  value: species.conservationStatus,
+                ),
+                const SizedBox(height: 12),
+                SpeciesFactCard(
+                  icon: Icons.place_outlined,
+                  title: 'Habitat',
+                  value: species.habitat,
+                ),
+                const SizedBox(height: 12),
+                SpeciesFactCard(
+                  icon: Icons.timeline_outlined,
+                  title: 'Growth process',
+                  value: species.growthProcess,
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
+}
+
+class _SpeciesProfile {
+  const _SpeciesProfile({required this.species, required this.media});
+
+  final Species? species;
+  final SpeciesMedia media;
 }

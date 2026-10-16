@@ -28,11 +28,11 @@ assets/models-3d/_cycle_tmp/
 assets/models-3d/_probe/
 assets/models-3d/_source/
 *.raw
-ml/artifacts/*.joblib
-ml/artifacts/*.pkl
-ml/artifacts/*.onnx
-ml/artifacts/*.pt
-ml/artifacts/*.h5
+ml/artifacts/**/*.joblib
+ml/artifacts/**/*.pkl
+ml/artifacts/**/*.onnx
+ml/artifacts/**/*.pt
+ml/artifacts/**/*.h5
 
 # Android / Flutter (when app/ is generated)
 app/.gradle/

@@ -1,9 +1,12 @@
-# MarineSee ML pipeline dependencies.
-# Installed locally for smoke tests; full training still runs on Google Colab
-# (see docs/12-colab-and-training.md). Keep in sync with ml/src imports.
+# MarineSee SVM pipeline. Local env: repo-root .venv (Python 3.12).
+# Keep in sync with ml/src imports. tqdm and matplotlib are for the notebooks.
 
 numpy>=1.26,<3
 pillow>=10
 scikit-image>=0.23
-scikit-learn>=1.5
+scipy>=1.11
+scikit-learn>=1.5,<1.11
 joblib>=1.3
+tqdm>=4.66
+matplotlib>=3.8
+ipykernel>=6.29

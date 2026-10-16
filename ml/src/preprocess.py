@@ -17,7 +17,7 @@ try:
         classify_folder,
     )
     from .inventory import iter_images
-    from .leaf_focus import analyze_and_crop
+    from .leaf_focus import analyze_and_crop, crop_to_plant
 except ImportError:  # `python test_preprocess.py` from ml/src
     from dataset_contract import (
         IMAGE_SIZE,
@@ -27,7 +27,7 @@ except ImportError:  # `python test_preprocess.py` from ml/src
         classify_folder,
     )
     from inventory import iter_images
-    from leaf_focus import analyze_and_crop
+    from leaf_focus import analyze_and_crop, crop_to_plant
 
 PREPROCESS_SPEC = {
     "version": "v1",
@@ -113,6 +113,23 @@ def resize_rgb(rgb: np.ndarray, size: int = IMAGE_SIZE) -> np.ndarray:
 
 def load_rgb(path: Path, size: int = IMAGE_SIZE) -> np.ndarray:
     return resize_rgb(load_rgb_full(path), size=size)
+
+
+def prepare_rgb(rgb: np.ndarray, size: int = IMAGE_SIZE) -> np.ndarray:
+    """Plant crop when the green mask allows it, then resize.
+
+    Training and identify must both go through this before extract_vector.
+    """
+    cropped, _ = crop_to_plant(rgb)
+    return resize_rgb(cropped, size=size)
+
+
+def load_prepared(path: Path, size: int = IMAGE_SIZE) -> np.ndarray:
+    return prepare_rgb(load_rgb_full(path), size=size)
+
+
+def prepared_from_bytes(data: bytes, size: int = IMAGE_SIZE) -> np.ndarray:
+    return prepare_rgb(_pil_to_rgb(Image.open(BytesIO(data))), size=size)
 
 
 def qc_reason(rgb: np.ndarray) -> str | None:

@@ -5,16 +5,34 @@ import 'tokens.dart';
 ThemeData buildMarineSeeTheme(AppTokens tokens) {
   final scheme = ColorScheme(
     brightness: tokens.brightness,
-    primary: tokens.brand,
-    onPrimary: tokens.onBrand,
-    secondary: tokens.cyan,
-    onSecondary: tokens.onBrand,
-    error: tokens.danger,
-    onError: tokens.onBrand,
-    surface: tokens.surface,
-    onSurface: tokens.ink,
-    outline: tokens.borderStrong,
-    surfaceContainerHighest: tokens.surfaceHigh,
+    primary: SkyPalette.primary,
+    onPrimary: SkyPalette.onPrimary,
+    primaryContainer: SkyPalette.primaryContainer,
+    onPrimaryContainer: SkyPalette.onSky,
+    secondary: SkyPalette.headerBottom,
+    onSecondary: SkyPalette.onHeader,
+    secondaryContainer: SkyPalette.mistDeep,
+    onSecondaryContainer: SkyPalette.ink,
+    tertiary: SkyPalette.seagrass,
+    onTertiary: SkyPalette.onSeagrass,
+    tertiaryContainer: SkyPalette.mistDeep,
+    onTertiaryContainer: SkyPalette.ink,
+    error: SkyPalette.danger,
+    onError: SkyPalette.onPrimary,
+    errorContainer: SkyPalette.dangerFill,
+    onErrorContainer: SkyPalette.danger,
+    surface: SkyPalette.foam,
+    onSurface: SkyPalette.ink,
+    onSurfaceVariant: SkyPalette.inkMuted,
+    outline: SkyPalette.lineOnSand,
+    outlineVariant: SkyPalette.lineOnSky,
+    shadow: SkyPalette.shadow,
+    inverseSurface: SkyPalette.inverse,
+    onInverseSurface: SkyPalette.onInverse,
+    inversePrimary: SkyPalette.water,
+    surfaceTint: SkyPalette.primary,
+    surfaceContainerHighest: SkyPalette.foam,
+    surfaceContainerLow: SkyPalette.mist,
   );
 
   final textTheme = _textTheme(tokens);
@@ -42,17 +60,17 @@ ThemeData buildMarineSeeTheme(AppTokens tokens) {
       iconTheme: IconThemeData(color: tokens.ink),
     ),
     navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: tokens.ocean,
+      backgroundColor: tokens.surfaceHigh,
       elevation: 0,
-      height: 72,
-      indicatorColor: tokens.cyan.withValues(alpha: 0.16),
+      height: 64,
+      indicatorColor: tokens.brand.withValues(alpha: 0.16),
       overlayColor: WidgetStatePropertyAll(
         tokens.cyan.withValues(alpha: 0.08),
       ),
       iconTheme: WidgetStateProperty.resolveWith((states) {
         final selected = states.contains(WidgetState.selected);
         return IconThemeData(
-          color: selected ? tokens.cyan : tokens.inkSubtle,
+          color: selected ? SkyPalette.primaryDark : tokens.inkMuted,
           size: 24,
         );
       }),
@@ -62,31 +80,46 @@ ThemeData buildMarineSeeTheme(AppTokens tokens) {
           fontSize: 12,
           fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
           letterSpacing: 0.2,
-          color: selected ? tokens.cyan : tokens.inkSubtle,
+          color: selected ? SkyPalette.primaryDark : tokens.inkMuted,
         );
       }),
     ),
     filledButtonTheme: FilledButtonThemeData(
-      style: FilledButton.styleFrom(
-        minimumSize: AppTokens.tapSize,
-        backgroundColor: tokens.brand,
-        foregroundColor: tokens.onBrand,
-        disabledBackgroundColor: tokens.brand.withValues(alpha: 0.28),
-        disabledForegroundColor: tokens.onBrand.withValues(alpha: 0.55),
-        shape: RoundedRectangleBorder(borderRadius: radius),
-        textStyle: textTheme.labelLarge,
+      style: ButtonStyle(
+        minimumSize: const WidgetStatePropertyAll(AppTokens.tapSize),
+        backgroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.disabled)) {
+            return tokens.brand.withValues(alpha: 0.28);
+          }
+          if (states.contains(WidgetState.pressed)) {
+            return SkyPalette.primaryDark;
+          }
+          return tokens.brand;
+        }),
+        foregroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.disabled)) {
+            return tokens.onBrand.withValues(alpha: 0.55);
+          }
+          return tokens.onBrand;
+        }),
+        shape: WidgetStatePropertyAll(
+          RoundedRectangleBorder(borderRadius: radius),
+        ),
+        textStyle: WidgetStatePropertyAll(textTheme.labelLarge),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         minimumSize: AppTokens.tapSize,
-        foregroundColor: tokens.isLight ? tokens.brand : tokens.ink,
+        foregroundColor: tokens.isLight ? tokens.brandDeep : tokens.ink,
         backgroundColor: tokens.isLight
             ? tokens.surface
             : tokens.surface.withValues(alpha: 0.55),
-        disabledForegroundColor: tokens.inkSubtle,
+        disabledForegroundColor: tokens.inkMuted,
         side: BorderSide(
-          color: tokens.isLight ? tokens.brand.withValues(alpha: 0.45) : tokens.borderStrong,
+          color: tokens.isLight
+              ? tokens.brandDeep.withValues(alpha: 0.55)
+              : tokens.borderStrong,
         ),
         shape: RoundedRectangleBorder(borderRadius: radius),
         textStyle: textTheme.labelLarge,
@@ -95,7 +128,7 @@ ThemeData buildMarineSeeTheme(AppTokens tokens) {
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         minimumSize: const Size(AppTokens.tapMin, 44),
-        foregroundColor: tokens.cyan,
+        foregroundColor: SkyPalette.primary,
         textStyle: textTheme.labelLarge,
       ),
     ),
@@ -111,7 +144,7 @@ ThemeData buildMarineSeeTheme(AppTokens tokens) {
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: tokens.surfaceHigh,
-      hintStyle: textTheme.bodyMedium?.copyWith(color: tokens.inkSubtle),
+      hintStyle: textTheme.bodyMedium?.copyWith(color: tokens.inkMuted),
       labelStyle: textTheme.labelLarge?.copyWith(color: tokens.inkMuted),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       border: OutlineInputBorder(
@@ -223,7 +256,7 @@ TextTheme _textTheme(AppTokens tokens) {
       fontSize: 13,
       height: 1.4,
       fontWeight: FontWeight.w400,
-      color: tokens.inkSubtle,
+      color: tokens.inkMuted,
     ),
     labelLarge: TextStyle(
       fontSize: 15,
@@ -244,7 +277,7 @@ TextTheme _textTheme(AppTokens tokens) {
       height: 1.3,
       fontWeight: FontWeight.w600,
       letterSpacing: 0.4,
-      color: tokens.inkSubtle,
+      color: tokens.inkMuted,
     ),
   );
 }

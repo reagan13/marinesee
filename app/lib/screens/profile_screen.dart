@@ -1,95 +1,121 @@
 import 'package:flutter/material.dart';
 
 import '../data/profile_controller.dart';
-import '../theme/theme_controller.dart';
 import '../theme/tokens.dart';
 import '../widgets/ocean_layout.dart';
 import '../widgets/ocean_surface.dart';
-import '../widgets/profile_avatar.dart';
-import '../widgets/settings_tile.dart';
-import 'profile_settings_screen.dart';
+import '../widgets/wash_title.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
-  void _openSettings(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => const ProfileSettingsScreen(),
-      ),
-    );
+  static const purpose =
+      'MarineSee identifies and teaches the nine Mati species.';
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final _name = TextEditingController();
+  var _loaded = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_loaded) {
+      return;
+    }
+    _name.text = ProfileScope.of(context).name;
+    _loaded = true;
+  }
+
+  @override
+  void dispose() {
+    _name.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final profile = ProfileScope.of(context);
-    final theme = ThemeScope.of(context);
-    final light = theme.isLight;
     final text = Theme.of(context).textTheme;
-    final tokens = context.tokens;
 
     return OceanScaffold(
-      title: 'Profile',
+      atmosphere: false,
+      header: const WashTitle(
+        title: 'Profile',
+        subtitle: 'Mati City',
+      ),
       body: OceanPage(
         children: [
-          OceanSurface(
-            glow: true,
-            child: Column(
-              children: [
-                ProfileAvatar(
-                  initials: profile.initials,
-                  photoBytes: profile.photoBytes,
-                  size: 96,
-                  onTap: () => _openSettings(context),
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  profile.displayName,
-                  textAlign: TextAlign.center,
-                  style: text.headlineSmall,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  profile.hasName
-                      ? '${profile.firstName} ${profile.lastName}'.trim()
-                      : 'Add your first and last name',
-                  textAlign: TextAlign.center,
-                  style: text.bodyMedium,
-                ),
-              ],
+          TextField(
+            controller: _name,
+            textCapitalization: TextCapitalization.words,
+            textInputAction: TextInputAction.done,
+            decoration: const InputDecoration(
+              labelText: 'Your name',
+              hintText: 'Shown on Home',
             ),
+            onChanged: profile.setName,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Stored on this device only. No account.',
+            style: text.bodySmall,
           ),
           const SizedBox(height: 16),
           OceanSurface(
-            padding: EdgeInsets.zero,
+            child: Text(ProfileScreen.purpose, style: text.bodyLarge),
+          ),
+          const SizedBox(height: 16),
+          const OceanSurface(
             child: Column(
               children: [
-                SettingsTile(
-                  icon: Icons.manage_accounts_outlined,
-                  label: 'Profile settings',
-                  subtitle: 'Photo, first name, last name',
-                  onTap: () => _openSettings(context),
-                ),
-                const OceanDivider(),
-                SettingsTile(
-                  icon: light
-                      ? Icons.dark_mode_outlined
-                      : Icons.wb_sunny_outlined,
-                  label: 'Appearance',
-                  subtitle: light
-                      ? 'Lagoon by day. Switch to night reef.'
-                      : 'Night reef. Switch to day lagoon.',
-                  onTap: theme.toggle,
-                  trailing: Switch(
-                    value: !light,
-                    onChanged: (_) => theme.toggle(),
-                    activeThumbColor: tokens.onBrand,
-                    activeTrackColor: tokens.brand,
-                  ),
-                ),
+                _Step(number: '1', label: 'Camera or gallery'),
+                OceanDivider(),
+                _Step(number: '2', label: 'Read the name and percent'),
+                OceanDivider(),
+                _Step(number: '3', label: 'Open the library and 3D'),
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class _Step extends StatelessWidget {
+  const _Step({required this.number, required this.label});
+
+  final String number;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = context.tokens;
+    final text = Theme.of(context).textTheme;
+
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minHeight: AppTokens.tapMin),
+      child: Row(
+        children: [
+          Container(
+            width: 32,
+            height: 32,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: tokens.brandDeep,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Text(
+              number,
+              style: text.labelLarge?.copyWith(color: tokens.onBrand),
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Text(label, style: text.titleMedium)),
         ],
       ),
     );

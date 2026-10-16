@@ -27,7 +27,11 @@ class PageHero extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        gradient: tokens.primaryGradient,
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [SkyPalette.primaryDark, SkyPalette.inverse],
+        ),
         borderRadius: AppRadius.card,
         boxShadow: tokens.glowShadows,
       ),
@@ -51,7 +55,7 @@ class PageHero extends StatelessWidget {
                     Text(
                       kicker,
                       style: text.labelMedium?.copyWith(
-                        color: tokens.onBrand.withValues(alpha: 0.8),
+                        color: tokens.onBrand,
                         letterSpacing: 1.2,
                       ),
                     ),
@@ -64,7 +68,7 @@ class PageHero extends StatelessWidget {
                     Text(
                       subtitle,
                       style: text.bodySmall?.copyWith(
-                        color: tokens.onBrand.withValues(alpha: 0.86),
+                        color: tokens.onBrand,
                       ),
                     ),
                   ],

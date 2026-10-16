@@ -4,14 +4,13 @@ import '../data/model_3d_library.dart';
 import '../data/species.dart';
 import '../data/species_catalog.dart';
 import '../theme/tokens.dart';
-import '../widgets/app_header.dart';
 import '../widgets/app_search_field.dart';
 import '../widgets/app_states.dart';
-import '../widgets/data_coming_badge.dart';
 import '../widgets/filter_chip_bar.dart';
 import '../widgets/ocean_layout.dart';
-import '../widgets/section_header.dart';
 import '../widgets/species_card.dart';
+import '../widgets/wash_title.dart';
+import 'shell_scope.dart';
 import 'species_screen.dart';
 
 class LibraryScreen extends StatefulWidget {
@@ -56,9 +55,14 @@ class _LibraryScreenState extends State<LibraryScreen> {
   Widget build(BuildContext context) {
     return OceanScaffold(
       atmosphere: false,
-      header: const AppHeader(
-        title: 'Library',
-        subtitle: 'Nine documented seagrass species.',
+      header: WashTitle(
+        title: 'Species Library',
+        onBack: () => ShellScope.of(context).select(ShellTab.home),
+        bottom: AppSearchField(
+          hint: 'Search by scientific or common name',
+          onWash: true,
+          onChanged: (value) => setState(() => _query = value.toLowerCase()),
+        ),
       ),
       body: FutureBuilder<_LibraryPayload>(
         future: _future,
@@ -73,29 +77,30 @@ class _LibraryScreenState extends State<LibraryScreen> {
           if (payload == null) {
             return const OceanLoading(label: 'Opening the library…');
           }
-          final items = payload.items;
 
           final genera = [
             'All',
-            ...{for (final species in items) species.scientificName.split(' ').first},
+            ...{
+              for (final species in payload.items)
+                species.scientificName.split(' ').first,
+            },
           ];
-          final visible = _filter(items);
+          final visible = _filter(payload.items);
 
           return OceanPage(
-            extraBottom: AppSpace.navClearance,
             children: [
-              AppSearchField(
-                hint: 'Search species',
-                onChanged: (value) => setState(() => _query = value.toLowerCase()),
-              ),
-              const SizedBox(height: 14),
               FilterChipBar(
                 labels: genera,
                 selected: _genus,
                 onSelected: (value) => setState(() => _genus = value),
               ),
-              const SizedBox(height: 22),
-              const SectionHeader(title: 'Nine species'),
+              const SizedBox(height: 16),
+              Text(
+                'Showing ${visible.length} species',
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  color: context.tokens.ink,
+                ),
+              ),
               const SizedBox(height: 12),
               if (visible.isEmpty)
                 const OceanEmpty(
@@ -112,7 +117,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                     crossAxisCount: 2,
                     mainAxisSpacing: 12,
                     crossAxisSpacing: 12,
-                    childAspectRatio: 0.78,
+                    childAspectRatio: 0.72,
                   ),
                   itemBuilder: (context, index) {
                     final species = visible[index];
@@ -120,7 +125,6 @@ class _LibraryScreenState extends State<LibraryScreen> {
                       title: species.scientificName,
                       subtitle: species.commonName,
                       imageAsset: payload.media[species.slug]?.stillAsset,
-                      badge: species.dataComing ? const DataComingBadge() : null,
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute<void>(

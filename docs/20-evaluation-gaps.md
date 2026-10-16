@@ -2,7 +2,7 @@
 
 **IMPLEMENTATION.** Read this before changing the MarineSee app. The user questionnaire is frozen at 29 statements in `MarineSee-Validation-Questions.txt`. Pass checks, statuses, and evidence live in `19-evaluation-question-spec.md`. This file is the open-work list so an app change does not skip a statement that is still `not-met` or `unmeasured`.
 
-Snapshot copied from the spec (checked 1 Oct 2026, evidence corrected 4 Oct 2026): **5 met, 8 not-met, 16 unmeasured.**
+Snapshot copied from the spec (checked 9 Oct 2026, after the Cymodocea model): **5 met, 4 not-met, 20 unmeasured.**
 
 A high user-evaluation score is not available while any row is `not-met` or `unmeasured`.
 
@@ -21,40 +21,24 @@ A high user-evaluation score is not available while any row is `not-met` or `unm
 |----|----------------|
 | FS-1 | Identify offers Camera and Gallery, and the chosen photo is previewed. |
 | FS-2 | The library lists the nine scientific names from `11-species.md`. |
-| RE-3 | After onboarding, Identify and Library are both reachable. |
+| RE-3 | After onboarding, Scan and Library are both reachable. |
 | RE-5 | The library is still there after the app is closed and opened again. |
 | RE-6 | Leaving a profile and opening it again shows the same field text. |
 
 ## Not implemented (`not-met`)
 
-These eight statements fail in the current app. A visual redesign does not close them.
+These four statements fail in the current app. A visual redesign does not close them.
 
 ### Identification result a tester can finish
 
 | ID | What is still missing |
 |----|------------------------|
-| FS-3 | After a successful identify, the tester must open that species’ profile **and** an interactive 3D view. Profile and 3D buttons exist only after the laptop API returns a slug. The 3D screen is not an interactive model (see FS-7). |
+| FS-3 | After a successful identify, the tester must open that species’ profile **and** an interactive 3D view. Profile and 3D buttons exist only after the laptop API returns a slug. *Cymodocea rotundata* has a `.glb`. The other eight species still open a clip or a placeholder. |
 | FS-4 | A finished identify must show the scientific name and a percent. `ApiClassifier` can do that only while `serve_identify.py` is up. Server down shows an error and no score. |
-| FS-5 | A low-confidence result must tell the tester to take the photo again. The sentence is in `result_screen.dart` and appears only on the low-confidence API path. |
+| FS-5 | A low-confidence result must tell the tester to take the photo again. The sentence is a notice in `result_screen.dart` and appears only on the low-confidence API path. |
 | US-4 | Same blocker as FS-5. The retake sentence has not been shown to a tester as a clear instruction. |
 
-Files: `app/lib/screens/result_screen.dart`, `app/lib/classify/api_classifier.dart`, `app/lib/screens/viewer_3d_screen.dart`.
-
-### Species profiles
-
-| ID | What is still missing |
-|----|------------------------|
-| FS-6 | Each profile must show real text for common name, botanical characteristics, ecological role, conservation status, and habitat. Labels exist. Values in `app/assets/data/species.json` are `TBD — adviser source`. |
-
-### Interactive 3D
-
-| ID | What is still missing |
-|----|------------------------|
-| FS-7 | The tester can rotate and zoom at least one species model. `viewer_3d_screen.dart` says rotate/zoom is not wired. A growth clip or still is playback only. |
-| US-3 | Camera, gallery, and library work. 3D has no rotate/zoom control, so this statement stays `not-met`. |
-| PE-4 | Rotate and zoom cannot be timed for lag until the gesture exists. |
-
-Rotate/zoom of a supplied `.glb` is app integration. It does not require authoring a `.blend` file.
+Files: `app/lib/screens/result_screen.dart`, `app/lib/classify/api_classifier.dart`, `app/lib/screens/viewer_3d_screen.dart`, `app/lib/widgets/glb_viewer.dart`.
 
 ## Not shown on a phone (`unmeasured`)
 
@@ -62,6 +46,10 @@ These paths may already exist. They stay `unmeasured` until a tester does the pa
 
 | ID | What a phone pass still has to show |
 |----|--------------------------------------|
+| FS-6 | Each profile field shows cited text for common name, botanical characteristics, ecological role, conservation status, and habitat. The text is in `species.json`. A tester has not opened a profile on a phone. |
+| FS-7 | Rotate and zoom *Cymodocea rotundata*. The meadow `.glb` and the viewer controls are in the app. Play loops the growth from the bud. A tester has not done that on a phone. |
+| US-3 | Camera, gallery, library, and the *Cymodocea* rotate/zoom controls are in the app. A tester has not scored them on a phone. |
+| PE-4 | Time rotate and zoom on a physical phone. The *Cymodocea* meadow model is bundled. Lag has not been timed. |
 | US-1 | A first-time user can tell MarineSee identifies and teaches Mati seagrass. |
 | US-2 | After one short brief, the tester identifies a photo and opens the library with no step-by-step guide. |
 | US-5 | The tester agrees the text, colors, and layout are comfortable on a phone. |

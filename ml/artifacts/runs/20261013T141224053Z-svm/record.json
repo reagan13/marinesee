@@ -1,0 +1,325 @@
+{
+  "kind": "svm",
+  "runtime": "local",
+  "started_at": "2026-10-13T14:08:29Z",
+  "elapsed_seconds": 234.7,
+  "data_root": "D:\\pepot\\marinesee\\assets\\species\\Seagrass",
+  "max_per_class": 100,
+  "split_seed": 42,
+  "image_size": 256,
+  "variant": "all",
+  "classes": [
+    "cymodocea_rotundata",
+    "cymodocea_serrulata",
+    "enhalus_acoroides",
+    "halodule_pinifolia",
+    "halodule_uninervis",
+    "halophila_minor",
+    "halophila_ovalis",
+    "syringodium_isoetifolium"
+  ],
+  "held_out": [
+    "thalassia_hemprichii"
+  ],
+  "images_this_run": 696,
+  "n_train": 640,
+  "n_val": 105,
+  "n_test": 105,
+  "train_class_counts": {
+    "halophila_ovalis": 80,
+    "cymodocea_rotundata": 80,
+    "halophila_minor": 80,
+    "enhalus_acoroides": 80,
+    "syringodium_isoetifolium": 80,
+    "halodule_uninervis": 80,
+    "halodule_pinifolia": 80,
+    "cymodocea_serrulata": 80
+  },
+  "fit_seconds": 0.3,
+  "train_accuracy": 0.9875,
+  "val_accuracy": 0.3619047619047619,
+  "test_accuracy": 0.2857142857142857,
+  "train_report": {
+    "cymodocea_rotundata": {
+      "precision": 1.0,
+      "recall": 0.975,
+      "f1-score": 0.9873417721518988,
+      "support": 80.0
+    },
+    "cymodocea_serrulata": {
+      "precision": 0.9753086419753086,
+      "recall": 0.9875,
+      "f1-score": 0.9813664596273292,
+      "support": 80.0
+    },
+    "enhalus_acoroides": {
+      "precision": 0.9876543209876543,
+      "recall": 1.0,
+      "f1-score": 0.9937888198757764,
+      "support": 80.0
+    },
+    "halodule_pinifolia": {
+      "precision": 0.975609756097561,
+      "recall": 1.0,
+      "f1-score": 0.9876543209876543,
+      "support": 80.0
+    },
+    "halodule_uninervis": {
+      "precision": 1.0,
+      "recall": 0.975,
+      "f1-score": 0.9873417721518988,
+      "support": 80.0
+    },
+    "halophila_minor": {
+      "precision": 0.9876543209876543,
+      "recall": 1.0,
+      "f1-score": 0.9937888198757764,
+      "support": 80.0
+    },
+    "halophila_ovalis": {
+      "precision": 0.9873417721518988,
+      "recall": 0.975,
+      "f1-score": 0.9811320754716981,
+      "support": 80.0
+    },
+    "syringodium_isoetifolium": {
+      "precision": 0.9875,
+      "recall": 0.9875,
+      "f1-score": 0.9875,
+      "support": 80.0
+    },
+    "accuracy": 0.9875,
+    "macro avg": {
+      "precision": 0.9876336015250096,
+      "recall": 0.9875,
+      "f1-score": 0.9874892550177541,
+      "support": 640.0
+    },
+    "weighted avg": {
+      "precision": 0.9876336015250097,
+      "recall": 0.9875,
+      "f1-score": 0.987489255017754,
+      "support": 640.0
+    }
+  },
+  "val_report": {
+    "cymodocea_rotundata": {
+      "precision": 0.4375,
+      "recall": 0.4666666666666667,
+      "f1-score": 0.45161290322580644,
+      "support": 15.0
+    },
+    "cymodocea_serrulata": {
+      "precision": 0.38461538461538464,
+      "recall": 0.38461538461538464,
+      "f1-score": 0.38461538461538464,
+      "support": 13.0
+    },
+    "enhalus_acoroides": {
+      "precision": 0.47058823529411764,
+      "recall": 0.5333333333333333,
+      "f1-score": 0.5,
+      "support": 15.0
+    },
+    "halodule_pinifolia": {
+      "precision": 0.5625,
+      "recall": 0.6923076923076923,
+      "f1-score": 0.6206896551724138,
+      "support": 13.0
+    },
+    "halodule_uninervis": {
+      "precision": 0.26666666666666666,
+      "recall": 0.26666666666666666,
+      "f1-score": 0.26666666666666666,
+      "support": 15.0
+    },
+    "halophila_minor": {
+      "precision": 0.3333333333333333,
+      "recall": 0.25,
+      "f1-score": 0.2857142857142857,
+      "support": 4.0
+    },
+    "halophila_ovalis": {
+      "precision": 0.07692307692307693,
+      "recall": 0.06666666666666667,
+      "f1-score": 0.07142857142857142,
+      "support": 15.0
+    },
+    "syringodium_isoetifolium": {
+      "precision": 0.25,
+      "recall": 0.2,
+      "f1-score": 0.2222222222222222,
+      "support": 15.0
+    },
+    "accuracy": 0.3619047619047619,
+    "macro avg": {
+      "precision": 0.3477658371040724,
+      "recall": 0.3575320512820513,
+      "f1-score": 0.35036871113066886,
+      "support": 105.0
+    },
+    "weighted avg": {
+      "precision": 0.3444857430151548,
+      "recall": 0.3619047619047619,
+      "f1-score": 0.35134074393569065,
+      "support": 105.0
+    }
+  },
+  "test_report": {
+    "cymodocea_rotundata": {
+      "precision": 0.2777777777777778,
+      "recall": 0.3333333333333333,
+      "f1-score": 0.30303030303030304,
+      "support": 15.0
+    },
+    "cymodocea_serrulata": {
+      "precision": 0.2857142857142857,
+      "recall": 0.3076923076923077,
+      "f1-score": 0.2962962962962963,
+      "support": 13.0
+    },
+    "enhalus_acoroides": {
+      "precision": 0.25,
+      "recall": 0.3333333333333333,
+      "f1-score": 0.2857142857142857,
+      "support": 15.0
+    },
+    "halodule_pinifolia": {
+      "precision": 0.3684210526315789,
+      "recall": 0.5384615384615384,
+      "f1-score": 0.4375,
+      "support": 13.0
+    },
+    "halodule_uninervis": {
+      "precision": 0.3,
+      "recall": 0.2,
+      "f1-score": 0.24,
+      "support": 15.0
+    },
+    "halophila_minor": {
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1-score": 0.6666666666666666,
+      "support": 4.0
+    },
+    "halophila_ovalis": {
+      "precision": 0.08333333333333333,
+      "recall": 0.06666666666666667,
+      "f1-score": 0.07407407407407407,
+      "support": 15.0
+    },
+    "syringodium_isoetifolium": {
+      "precision": 0.3,
+      "recall": 0.2,
+      "f1-score": 0.24,
+      "support": 15.0
+    },
+    "accuracy": 0.2857142857142857,
+    "macro avg": {
+      "precision": 0.35815580618212195,
+      "recall": 0.30993589743589745,
+      "f1-score": 0.31791020322270325,
+      "support": 105.0
+    },
+    "weighted avg": {
+      "precision": 0.2920992958586944,
+      "recall": 0.2857142857142857,
+      "f1-score": 0.27950760438855676,
+      "support": 105.0
+    }
+  },
+  "confusion_matrix_test": [
+    [
+      5,
+      2,
+      2,
+      2,
+      0,
+      0,
+      2,
+      2
+    ],
+    [
+      3,
+      4,
+      4,
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      3,
+      1,
+      5,
+      1,
+      1,
+      0,
+      2,
+      2
+    ],
+    [
+      1,
+      1,
+      2,
+      7,
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      2,
+      0,
+      4,
+      3,
+      3,
+      0,
+      3,
+      0
+    ],
+    [
+      1,
+      0,
+      1,
+      0,
+      0,
+      2,
+      0,
+      0
+    ],
+    [
+      3,
+      3,
+      2,
+      4,
+      0,
+      0,
+      1,
+      2
+    ],
+    [
+      0,
+      3,
+      0,
+      2,
+      5,
+      0,
+      2,
+      3
+    ]
+  ],
+  "study_target_accuracy": 0.85,
+  "loss_note": "RBF SVM is one fit, so there is no epoch train-loss or validation-loss curve. This record stores fit time and train, validation, and test precision, recall, and F1.",
+  "recorded_at": "2026-10-13T14:12:24Z",
+  "run_id": "20261013T141224053Z",
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "numpy": "2.5.4",
+    "sklearn": "1.9.1",
+    "skimage": "0.26.0"
+  },
+  "run_dir": "D:\\pepot\\marinesee\\ml\\artifacts\\runs\\20261013T141224053Z-svm"
+}

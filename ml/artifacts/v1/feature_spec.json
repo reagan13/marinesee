@@ -1,0 +1,15 @@
+{
+  "version": "v2",
+  "input": "plant crop, then 256px RGB",
+  "color": "hsv_hist_16x3 frame + hsv_hist_16x3 plant pixels + hsv mean/std plant pixels",
+  "texture": "glcm_128px_32lv_d1_d2_d4_6props_angle_mean_and_range",
+  "shape": "plant_mask_blobs_and_blade_width_10",
+  "glcm_size": 128,
+  "length": 148,
+  "blade_width_index": 144,
+  "locked_svm": {
+    "kernel": "rbf",
+    "C": 3.0,
+    "gamma": 0.01
+  }
+}

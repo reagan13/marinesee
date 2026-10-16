@@ -1,4 +1,4 @@
-"""Score one photo with the Colab v1 joblib. Same resize + features as notebook 02."""
+"""Score one photo with the v1 joblib. Same plant crop, resize, and features as notebook 02."""
 
 from __future__ import annotations
 
@@ -11,11 +11,11 @@ import numpy as np
 try:
     from .dataset_contract import TRAINABLE_SPECIES
     from .features import extract_vector
-    from .preprocess import load_rgb, load_rgb_from_bytes
+    from .preprocess import load_prepared, prepared_from_bytes
 except ImportError:
     from dataset_contract import TRAINABLE_SPECIES
     from features import extract_vector
-    from preprocess import load_rgb, load_rgb_from_bytes
+    from preprocess import load_prepared, prepared_from_bytes
 
 # IMPLEMENTATION default until Q14 is locked. Chance for 8 classes is 12.5%.
 LOW_CONFIDENCE = 0.20
@@ -53,14 +53,14 @@ def _score(rgb: np.ndarray, model) -> dict:
 
 def identify_path(path: Path, model=None) -> dict:
     model = model or load_model()
-    result = _score(load_rgb(path), model)
+    result = _score(load_prepared(path), model)
     result["path"] = str(path)
     return result
 
 
 def identify_bytes(data: bytes, model=None) -> dict:
     model = model or load_model()
-    return _score(load_rgb_from_bytes(data), model)
+    return _score(prepared_from_bytes(data), model)
 
 
 def main() -> None:

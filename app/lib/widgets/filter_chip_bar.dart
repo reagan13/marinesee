@@ -17,7 +17,7 @@ class FilterChipBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 40,
+      height: AppTokens.tapMin,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: labels.length,
@@ -59,16 +59,16 @@ class FilterChoiceChip extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppRadius.pill),
         child: Ink(
           decoration: BoxDecoration(
-            gradient: selected ? tokens.primaryGradient : null,
-            color: selected ? null : tokens.surfaceHigh,
+            color: selected ? SkyPalette.primary : tokens.surfaceHigh,
             borderRadius: BorderRadius.circular(AppRadius.pill),
             border: Border.all(
               color: selected ? tokens.brand : tokens.border,
             ),
           ),
           child: Container(
+            height: AppTokens.tapMin,
             alignment: Alignment.center,
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
               label,
               style: Theme.of(context).textTheme.labelLarge?.copyWith(

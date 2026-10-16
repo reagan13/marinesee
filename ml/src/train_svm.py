@@ -20,23 +20,26 @@ from .dataset_contract import SPLIT_SEED, TRAINABLE_SPECIES
 from .features import FEATURE_SPEC
 
 
-def make_pipeline(seed: int = SPLIT_SEED) -> Pipeline:
-    return Pipeline(
-        [
-            ("scaler", StandardScaler()),
-            (
-                "svm",
-                SVC(
-                    kernel="rbf",
-                    C=10.0,
-                    gamma="scale",
-                    class_weight="balanced",
-                    probability=True,
-                    random_state=seed,
-                ),
-            ),
-        ]
-    )
+def make_pipeline(
+    seed: int = SPLIT_SEED,
+    *,
+    kernel: str = "rbf",
+    C: float = 10.0,
+    gamma: str | float | None = "scale",
+    class_weight: str | None = "balanced",
+    probability: bool = True,
+) -> Pipeline:
+    svc_args = {
+        "kernel": kernel,
+        "C": C,
+        "gamma": "scale" if gamma is None else gamma,
+        "class_weight": class_weight,
+        "random_state": seed,
+    }
+    # identify.py needs predict_proba; scikit-learn 1.9 warns on the argument itself.
+    if probability:
+        svc_args["probability"] = True
+    return Pipeline([("scaler", StandardScaler()), ("svm", SVC(**svc_args))])
 
 
 def evaluate(model: Pipeline, x: np.ndarray, y: list[str]) -> dict:

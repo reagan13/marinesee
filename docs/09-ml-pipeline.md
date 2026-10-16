@@ -49,16 +49,16 @@ At inference, apply the **same resize and color assumptions**. Do not augment us
 
 | Family | Paper wording | Typical implementation (IMPLEMENTATION until locked) |
 |--------|---------------|------------------------------------------------------|
-| Color | Color histograms | HSV or RGB histogram, concatenated |
-| Texture | GLCM | Contrast, homogeneity, energy, correlation on grayscale |
-| Shape | Contour and blade characteristics | Contour features, aspect ratio, solidity — **OPEN** exact list |
+| Color | Color histograms | HSV histogram of the frame and of plant-mask pixels, plus plant HSV mean / spread |
+| Texture | GLCM | 128px gray, distances 1/2/4, six properties averaged over four angles plus their spread |
+| Shape | Contour and blade characteristics | Plant-mask blobs plus skeleton blade width — **OPEN** exact list |
 
-The SVM sees a **feature vector**, not raw pixels.
+The SVM sees a **feature vector**, not raw pixels. **IMPLEMENTATION:** `ml/src/features.py` v2 (148 numbers) on the output of `preprocess.prepare_rgb` (green-mask plant crop, then 256px). `identify.py` calls the same two functions on a user photo. The locked SVM is RBF `C=3`, `gamma=0.01`, chosen by validation macro F1 on 13 Oct 2026. Exact list stays **OPEN** for the paper.
 
 ## Train and evaluate
 
 - Train on the 70% split.
-- Tune on 15% validation (kernel / C / class weight — **OPEN**).
+- Tune on 15% validation. **IMPLEMENTATION:** `ml/src/tune_svm.py` fits RBF (C × gamma) and linear (C) settings with `class_weight="balanced"` on train, picks the highest validation macro F1, and never reads the test split. Notebook 02 plots train against validation macro F1 across C in place of a loss curve (an SVM has no epochs). Final grid values stay **OPEN** for the paper.
 - Report accuracy (and preferably per-class precision/recall) on 15% test.
 - Success line for the study: **≥ 85%** test accuracy.
 

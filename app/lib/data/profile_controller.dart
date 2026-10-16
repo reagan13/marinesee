@@ -1,35 +1,19 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 
-/// Local visitor profile. No account or login in v1.
+/// Local visitor name for the home greeting. No account or login.
 class ProfileController extends ChangeNotifier {
-  String firstName = '';
-  String lastName = '';
-  Uint8List? photoBytes;
+  String name = '';
 
   String get displayName {
-    final name = '$firstName $lastName'.trim();
-    return name.isEmpty ? 'Guest' : name;
+    final trimmed = name.trim();
+    return trimmed.isEmpty ? 'Guest' : trimmed;
   }
 
-  String get initials {
-    final first = firstName.trim();
-    final last = lastName.trim();
-    final letters = '${first.isEmpty ? '' : first[0]}${last.isEmpty ? '' : last[0]}';
-    return letters.isEmpty ? '?' : letters.toUpperCase();
-  }
-
-  bool get hasName => firstName.trim().isNotEmpty || lastName.trim().isNotEmpty;
-
-  void save({
-    required String firstName,
-    required String lastName,
-    Uint8List? photoBytes,
-  }) {
-    this.firstName = firstName.trim();
-    this.lastName = lastName.trim();
-    this.photoBytes = photoBytes;
+  void setName(String value) {
+    if (name == value) {
+      return;
+    }
+    name = value;
     notifyListeners();
   }
 }

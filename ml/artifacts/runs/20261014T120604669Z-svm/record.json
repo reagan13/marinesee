@@ -1,0 +1,356 @@
+{
+  "kind": "svm",
+  "runtime": "local",
+  "started_at": "2026-10-14T11:48:50Z",
+  "elapsed_seconds": 1034.6,
+  "data_root": "D:\\pepot\\marinesee\\assets\\species\\Seagrass",
+  "max_per_class": 400,
+  "split_seed": 42,
+  "image_size": 256,
+  "variant": "all",
+  "feature_spec": {
+    "version": "v2",
+    "input": "plant crop, then 256px RGB",
+    "color": "hsv_hist_16x3 frame + hsv_hist_16x3 plant pixels + hsv mean/std plant pixels",
+    "texture": "glcm_128px_32lv_d1_d2_d4_6props_angle_mean_and_range",
+    "shape": "plant_mask_blobs_and_blade_width_10",
+    "glcm_size": 128,
+    "length": 148,
+    "blade_width_index": 144,
+    "locked_svm": {
+      "kernel": "rbf",
+      "C": 3.0,
+      "gamma": 0.01
+    }
+  },
+  "classes": [
+    "cymodocea_rotundata",
+    "cymodocea_serrulata",
+    "enhalus_acoroides",
+    "halodule_pinifolia",
+    "halodule_uninervis",
+    "halophila_minor",
+    "halophila_ovalis",
+    "syringodium_isoetifolium"
+  ],
+  "held_out": [
+    "thalassia_hemprichii"
+  ],
+  "images_this_run": 1690,
+  "n_train": 1286,
+  "n_val": 254,
+  "n_test": 254,
+  "train_real_counts": {
+    "syringodium_isoetifolium": 113,
+    "halophila_ovalis": 280,
+    "halodule_pinifolia": 59,
+    "halodule_uninervis": 263,
+    "cymodocea_rotundata": 110,
+    "enhalus_acoroides": 280,
+    "halophila_minor": 16,
+    "cymodocea_serrulata": 61
+  },
+  "train_class_counts": {
+    "syringodium_isoetifolium": 113,
+    "halophila_ovalis": 280,
+    "halodule_pinifolia": 80,
+    "halodule_uninervis": 263,
+    "cymodocea_rotundata": 110,
+    "enhalus_acoroides": 280,
+    "halophila_minor": 80,
+    "cymodocea_serrulata": 80
+  },
+  "best_params": {
+    "kernel": "rbf",
+    "C": 3.0,
+    "gamma": 0.01
+  },
+  "locked_from_run": "20261013T144233395Z-svm",
+  "fit_seconds": 2.8,
+  "train_accuracy": 0.9074650077760498,
+  "val_accuracy": 0.5,
+  "test_accuracy": 0.421259842519685,
+  "train_report": {
+    "cymodocea_rotundata": {
+      "precision": 0.8373983739837398,
+      "recall": 0.9363636363636364,
+      "f1-score": 0.8841201716738197,
+      "support": 110.0
+    },
+    "cymodocea_serrulata": {
+      "precision": 0.8333333333333334,
+      "recall": 1.0,
+      "f1-score": 0.9090909090909091,
+      "support": 80.0
+    },
+    "enhalus_acoroides": {
+      "precision": 0.9341085271317829,
+      "recall": 0.8607142857142858,
+      "f1-score": 0.895910780669145,
+      "support": 280.0
+    },
+    "halodule_pinifolia": {
+      "precision": 0.9634146341463414,
+      "recall": 0.9875,
+      "f1-score": 0.9753086419753086,
+      "support": 80.0
+    },
+    "halodule_uninervis": {
+      "precision": 0.9649122807017544,
+      "recall": 0.8365019011406845,
+      "f1-score": 0.8961303462321792,
+      "support": 263.0
+    },
+    "halophila_minor": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 80.0
+    },
+    "halophila_ovalis": {
+      "precision": 0.933579335793358,
+      "recall": 0.9035714285714286,
+      "f1-score": 0.9183303085299456,
+      "support": 280.0
+    },
+    "syringodium_isoetifolium": {
+      "precision": 0.75,
+      "recall": 0.9823008849557522,
+      "f1-score": 0.8505747126436781,
+      "support": 113.0
+    },
+    "accuracy": 0.9074650077760498,
+    "macro avg": {
+      "precision": 0.9020933106362887,
+      "recall": 0.9383690170932234,
+      "f1-score": 0.9161832338518732,
+      "support": 1286.0
+    },
+    "weighted avg": {
+      "precision": 0.9154962597046551,
+      "recall": 0.9074650077760498,
+      "f1-score": 0.9080792469152112,
+      "support": 1286.0
+    }
+  },
+  "val_report": {
+    "cymodocea_rotundata": {
+      "precision": 0.23809523809523808,
+      "recall": 0.20833333333333334,
+      "f1-score": 0.2222222222222222,
+      "support": 24.0
+    },
+    "cymodocea_serrulata": {
+      "precision": 0.3,
+      "recall": 0.23076923076923078,
+      "f1-score": 0.2608695652173913,
+      "support": 13.0
+    },
+    "enhalus_acoroides": {
+      "precision": 0.5692307692307692,
+      "recall": 0.6166666666666667,
+      "f1-score": 0.592,
+      "support": 60.0
+    },
+    "halodule_pinifolia": {
+      "precision": 0.5833333333333334,
+      "recall": 0.5384615384615384,
+      "f1-score": 0.56,
+      "support": 13.0
+    },
+    "halodule_uninervis": {
+      "precision": 0.46296296296296297,
+      "recall": 0.44642857142857145,
+      "f1-score": 0.45454545454545453,
+      "support": 56.0
+    },
+    "halophila_minor": {
+      "precision": 0.6,
+      "recall": 0.75,
+      "f1-score": 0.6666666666666666,
+      "support": 4.0
+    },
+    "halophila_ovalis": {
+      "precision": 0.6229508196721312,
+      "recall": 0.6333333333333333,
+      "f1-score": 0.628099173553719,
+      "support": 60.0
+    },
+    "syringodium_isoetifolium": {
+      "precision": 0.34615384615384615,
+      "recall": 0.375,
+      "f1-score": 0.36,
+      "support": 24.0
+    },
+    "accuracy": 0.5,
+    "macro avg": {
+      "precision": 0.46534087118103507,
+      "recall": 0.4748740842490843,
+      "f1-score": 0.4680503852756817,
+      "support": 254.0
+    },
+    "weighted avg": {
+      "precision": 0.49355170321028075,
+      "recall": 0.5,
+      "f1-score": 0.495951969352735,
+      "support": 254.0
+    }
+  },
+  "test_report": {
+    "cymodocea_rotundata": {
+      "precision": 0.24,
+      "recall": 0.25,
+      "f1-score": 0.24489795918367346,
+      "support": 24.0
+    },
+    "cymodocea_serrulata": {
+      "precision": 0.17647058823529413,
+      "recall": 0.23076923076923078,
+      "f1-score": 0.2,
+      "support": 13.0
+    },
+    "enhalus_acoroides": {
+      "precision": 0.5,
+      "recall": 0.6166666666666667,
+      "f1-score": 0.5522388059701493,
+      "support": 60.0
+    },
+    "halodule_pinifolia": {
+      "precision": 0.6363636363636364,
+      "recall": 0.5384615384615384,
+      "f1-score": 0.5833333333333334,
+      "support": 13.0
+    },
+    "halodule_uninervis": {
+      "precision": 0.34545454545454546,
+      "recall": 0.3392857142857143,
+      "f1-score": 0.34234234234234234,
+      "support": 56.0
+    },
+    "halophila_minor": {
+      "precision": 0.6666666666666666,
+      "recall": 0.5,
+      "f1-score": 0.5714285714285714,
+      "support": 4.0
+    },
+    "halophila_ovalis": {
+      "precision": 0.5476190476190477,
+      "recall": 0.38333333333333336,
+      "f1-score": 0.45098039215686275,
+      "support": 60.0
+    },
+    "syringodium_isoetifolium": {
+      "precision": 0.37037037037037035,
+      "recall": 0.4166666666666667,
+      "f1-score": 0.39215686274509803,
+      "support": 24.0
+    },
+    "accuracy": 0.421259842519685,
+    "macro avg": {
+      "precision": 0.4353681068386951,
+      "recall": 0.40939789377289376,
+      "f1-score": 0.41717228339500384,
+      "support": 254.0
+    },
+    "weighted avg": {
+      "precision": 0.433405503456453,
+      "recall": 0.421259842519685,
+      "f1-score": 0.4217428598587797,
+      "support": 254.0
+    }
+  },
+  "confusion_matrix_test": [
+    [
+      6,
+      2,
+      4,
+      0,
+      5,
+      0,
+      3,
+      4
+    ],
+    [
+      2,
+      3,
+      3,
+      0,
+      1,
+      0,
+      2,
+      2
+    ],
+    [
+      2,
+      2,
+      37,
+      0,
+      14,
+      0,
+      2,
+      3
+    ],
+    [
+      1,
+      0,
+      1,
+      7,
+      2,
+      0,
+      1,
+      1
+    ],
+    [
+      7,
+      2,
+      12,
+      2,
+      19,
+      0,
+      9,
+      5
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      1,
+      2,
+      0,
+      0
+    ],
+    [
+      4,
+      5,
+      14,
+      2,
+      9,
+      1,
+      23,
+      2
+    ],
+    [
+      2,
+      3,
+      3,
+      0,
+      4,
+      0,
+      2,
+      10
+    ]
+  ],
+  "study_target_accuracy": 0.85,
+  "loss_note": "Locked refit of the validation winner (RBF C=3, gamma=0.01) on feature v2. No new grid search.",
+  "recorded_at": "2026-10-14T12:06:04Z",
+  "run_id": "20261014T120604669Z",
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "numpy": "2.5.4",
+    "sklearn": "1.9.1",
+    "skimage": "0.26.0"
+  },
+  "run_dir": "D:\\pepot\\marinesee\\ml\\artifacts\\runs\\20261014T120604669Z-svm"
+}

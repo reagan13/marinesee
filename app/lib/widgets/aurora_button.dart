@@ -27,8 +27,7 @@ class AuroraButton extends StatelessWidget {
       constraints: const BoxConstraints(minHeight: 52, minWidth: AppTokens.tapMin),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          gradient: enabled ? tokens.primaryGradient : null,
-          color: enabled ? null : tokens.brand.withValues(alpha: 0.28),
+          color: enabled ? SkyPalette.primary : tokens.brand.withValues(alpha: 0.28),
           borderRadius: radius,
           boxShadow: enabled ? tokens.glowShadows : null,
         ),
@@ -37,7 +36,8 @@ class AuroraButton extends StatelessWidget {
           child: InkWell(
             onTap: enabled ? onPressed : null,
             borderRadius: radius,
-            splashColor: tokens.ink.withValues(alpha: 0.12),
+            splashColor: SkyPalette.primaryDark.withValues(alpha: 0.45),
+            highlightColor: SkyPalette.primaryDark.withValues(alpha: 0.28),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
               child: Row(
