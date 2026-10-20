@@ -59,7 +59,7 @@ def clear_plant():
             continue
         if obj.get("cr_plant") or obj.name == "Cube" or obj.name.startswith(PLANT_PREFIXES):
             bpy.data.objects.remove(obj, do_unlink=True)
-    for name in ("Authoring", "Meadow"):
+    for name in ("Authoring", "Meadow", "Reef"):
         col = bpy.data.collections.get(name)
         if col:
             bpy.data.collections.remove(col)

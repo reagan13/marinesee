@@ -27,7 +27,7 @@ if HERE not in sys.path:
 for _name in [n for n in sys.modules if n == "rotundata_build" or n.startswith("rotundata_build.")]:
     del sys.modules[_name]
 
-from rotundata_build import checks, grow, layout, meshes, scene  # noqa: E402
+from rotundata_build import checks, grow, layout, meshes, reef, scene  # noqa: E402
 from rotundata_build import publish as _publish  # noqa: E402
 from rotundata_build.config import BLEND_PATH  # noqa: E402
 
@@ -52,6 +52,7 @@ def build(reset=None, overwrite_anim=None, do_publish=None):
         layout.create_plant()
         overwrite_anim = True
     rebuild_meshes()
+    reef.build_presentation()
     arm = bpy.data.objects["CR_Armature"]
     if overwrite_anim or bpy.data.actions.get("Grow") is None:
         grow.animate(arm)

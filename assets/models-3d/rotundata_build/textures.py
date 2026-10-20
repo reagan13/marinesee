@@ -79,6 +79,26 @@ def sand_image(name="CrSandGrain", n=256, seed=5):
     return img
 
 
+def water_image(name="CrWater", w=64, h=512):
+    """Shallow reef water behind the patch. Muted, and not the phone viewer's #1E8C98."""
+    v = np.linspace(0.0, 1.0, h)[:, None, None]
+    sand = np.array((0.20, 0.42, 0.42))
+    mid = np.array((0.08, 0.26, 0.30))
+    deep = np.array((0.02, 0.10, 0.14))
+    a = np.clip(v / 0.28, 0.0, 1.0)
+    a = a * a * (3.0 - 2.0 * a)
+    b = np.clip((v - 0.28) / 0.72, 0.0, 1.0)
+    b = b * b * (3.0 - 2.0 * b)
+    col = sand * (1.0 - a) + mid * a
+    col = col * (1.0 - b) + deep * b
+    u = np.linspace(0.0, 1.0, w)[None, :, None]
+    col = np.broadcast_to(col, (h, w, 3)).copy()
+    col += (0.012 * np.sin((u * 2.0 + v * 6.0) * np.pi * 2.0))
+    img = _image(name, w, h)
+    _fill(img, col)
+    return img
+
+
 def _principled(name, color, rough, spec=0.22):
     mat = bpy.data.materials.get(name) or bpy.data.materials.new(name)
     mat.use_nodes = True
