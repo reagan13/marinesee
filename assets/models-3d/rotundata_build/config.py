@@ -24,9 +24,9 @@ CONFIG = {
     "rhizome_radius_m": 0.0022,
     "rhizome_oval": 0.82,
     "rhizome_span_m": 0.32,
-    "rhizome_sink_m": 0.0005,
-    "root_radius_m": 0.0006,
-    "sand_bottom_z": -0.018,
+    "rhizome_sink_m": 0.006,
+    "root_radius_m": 0.00070,
+    "sand_bottom_z": -0.032,
     "min_bone_scale": 0.02,
     "fps": 30,
     "frame_hold": 316,
@@ -64,3 +64,50 @@ growth keys are made again for the new rest pose (this also resets fan keys).
 def leaf_count(i):
     counts = CONFIG["leaf_counts"]
     return counts[i % len(counts)]
+
+
+# Lesson explainer and the phone meadow it publishes.
+# Blade 2–4 mm wide: Seagrass-Watch. Length 7–15 cm, 9–15 veins, sheath
+# 1.5–5.5 cm, erect stem up to about 6 cm, internodes 1–4.5 cm, 2–7
+# leaves, 1–3 roots: El Shaffai (2011), Field Guide to Seagrasses of the
+# Red Sea, and the Flora of Tropical East Africa as given by Kew, in
+# line with the Great Barrier Reef identification guide.
+# Width is 4 mm, the top of that range, so a close view still shows a
+# narrow strap. The tip stays rounded and smooth: no teeth, no notch.
+# How far the rhizome wanders behind the front cut is a display choice,
+# not a Mati measurement.
+LESSON = {
+    "variant": "lesson",
+    "shoot_count": 9,
+    "leaf_counts": (3, 2, 2, 2, 2, 2, 2, 2),
+    "root_counts": (3, 2, 3, 2, 2, 3),
+    "leaf_width_m": 0.004,
+    "leaf_thickness_m": 0.00022,
+    "leaf_length_m": (0.07, 0.15),
+    "vein_count": 11,
+    "vein_groove_m": 0.000012,
+    "leaf_crown_m": 0.00008,
+    "stem_height_m": 0.048,
+    "stem_radius_m": (0.0015, 0.0013),
+    "scar_fracs": (0.08, 0.16, 0.24),
+    "scar_proud_m": 0.00040,
+    "scar_half_m": 0.00015,
+    "sheath_wall_m": 0.00022,
+    "leaf_base_frac": 0.82,
+    "rhizome_radius_m": 0.0024,
+    "rhizome_oval": 0.82,
+    "rhizome_span_m": 0.26,
+    "rhizome_sink_m": 0.0008,
+    "root_radius_m": 0.0009,
+    "sand_bottom_z": -0.032,
+    "min_bone_scale": 0.02,
+    "fps": 30,
+    "frame_hold": 900,
+    "frame_end": 900,
+    "seed": 21,
+}
+
+
+def use_lesson():
+    """Point CONFIG at the lesson meadow. Call once, before build()."""
+    CONFIG.update(LESSON)

@@ -76,6 +76,20 @@ class _Viewer3dScreenState extends State<Viewer3dScreen> {
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 28),
               children: [
                 GlbViewer(assetPath: media.modelAsset!, label: widget.slug),
+                if (media.hasLesson) ...[
+                  const SizedBox(height: 16),
+                  Text(
+                    'Lesson',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  SpeciesClipPlayer(
+                    assetPath: media.lessonAsset!,
+                    autoPlay: false,
+                  ),
+                ],
                 const SizedBox(height: 12),
                 _ModelNote(slug: widget.slug),
               ],

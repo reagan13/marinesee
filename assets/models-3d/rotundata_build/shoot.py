@@ -47,10 +47,27 @@ def shoot_mesh(name, origin, stem_dir, side_hint, cfg, sides=10, arc=12):
         face.material_index = 0
 
     # Sheath: C-shaped wrap with an outer and inner wall, open on the +normal side.
+    # Lesson sheath is about 3.4 cm on a stem under 6 cm (published range 1.5–5.5 cm).
     wall = cfg["sheath_wall_m"]
-    zs = [f * height for f in (0.40, 0.55, 0.78, 1.0)]
-    outer = [(rx + 0.0002, ry + 0.0002), (rx + 0.0006, ry + 0.0004), (0.0030, 0.0016), (0.0036, 0.0019)]
-    slit = [0.10, 0.18, 0.40, 0.62]
+    if cfg.get("variant") == "lesson":
+        fracs = (0.30, 0.52, 0.76, 1.0)
+        outer = (
+            (rx + 0.00030, ry + 0.00025),
+            (rx + 0.00090, ry + 0.00055),
+            (0.0022, 0.00135),
+            (0.0027, 0.00155),
+        )
+        slit = (0.06, 0.10, 0.20, 0.36)
+    else:
+        fracs = (0.40, 0.55, 0.78, 1.0)
+        outer = (
+            (rx + 0.0002, ry + 0.0002),
+            (rx + 0.0006, ry + 0.0004),
+            (0.0030, 0.0016),
+            (0.0036, 0.0019),
+        )
+        slit = (0.10, 0.18, 0.40, 0.62)
+    zs = [f * height for f in fracs]
     walls = {"o": [], "i": []}
     for z, (ax, ay), s in zip(zs, outer, slit):
         angles = [s + (2 * math.pi - 2 * s) * k / arc for k in range(arc + 1)]

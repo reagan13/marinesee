@@ -122,8 +122,8 @@ The phone viewer frames everything in the `.glb`, so absolute size does not chan
 
 - Every organ is closed solid geometry with real thickness. A plane, billboard, photo, or camera-facing card is never a leaf.
 - From the side a strap leaf shows a thin edge. From the front it shows a flat face. A cylindrical leaf (*Syringodium*) reads round from every side.
-- The sand is a solid mound with a cut side and a bottom, not a sheet.
-- Rhizome is one welded tube, partly buried. Roots are thin solid tubes that go down into the sand.
+- The sand is a solid aquarium cutaway bed (`ReefSand`): a rippled warm-sand top surface with small rounded reef pebbles, and a vertical front cutaway sediment wall (`sand_bottom_z = -0.032`) so the buried rhizome and descending roots are clearly visible in cross-section from the front while shoots fan into the tank depth.
+- Rhizome is one welded tube running along the front cutaway line, partly buried. Roots are thin solid tubes that branch downward along the cutaway sediment face and into the bed.
 - Sheaths have wall thickness. Leaf scars are thin closed bands built into the stem, a fraction of a millimetre proud, never separate tori or beads.
 - Mesh object scale is (1, 1, 1) at every frame. Growth is bone scale, never object scale.
 
@@ -181,7 +181,8 @@ Add: after moving a curve a long way, run once with `OVERWRITE_ANIM = True`.
 
 - One armature `<CODE>_Armature`, one unscaled `base` bone, every deform bone a direct child of `base`. No bone inherits a non-uniform scale. This is what keeps glTF from shearing a leaf.
 - Bones: `rhizome_kk` per internode, `shoot_ii`, `leaf_ii_j`, `root_ii_r`.
-- Growth keys pose-bone scale Y (X and Z stay 1), Euler XYZ rotation, and location. Location keeps parts joined: later internodes ride the growing rhizome tip, and leaf bases ride up inside the sheath as the stem lengthens.
+- Growth keys pose-bone scale Y (X and Z stay 1), Euler XYZ rotation, and location. Location keeps parts joined: later internodes ride the growing rhizome tip, dormant shoots/roots stay tucked inside the sand bed until their node activates, and leaf bases ride up inside the sheath as the stem lengthens.
+- Blades carry a continuous, gentle travelling water-current sway across frames 1-316 (66-frame wave period phased across shoots) so the plant breathes underwater as it grows and holds, then resets cleanly at frame 330.
 - Rhizome keys are linear so the riding location matches the lengthening exactly.
 
 ### 7.2 Timeline (same for all nine)
@@ -215,9 +216,9 @@ Facts about the viewer (`app/lib/widgets/glb_viewer.dart`): backdrop `#1E8C98`, 
 
 | Item | Limit | Reference (*C. rotundata*) |
 |------|-------|----------------------------|
-| Triangles | under 40,000 | 37,482 |
-| `.glb` size | about 4 MB or less | 2.2 MB |
-| Bones | about 120 or fewer | 88 |
+| Triangles | under 40,000 | 37,634 |
+| `.glb` size | about 4 MB or less | 2.3 MB |
+| Bones | about 120 or fewer | 93 |
 | Images | three or four, 512 px or less on the long side | 3 |
 
 PE-4 and PE-5 are timed on a phone, not here. A model that passes these budgets has still not passed PE-4.
@@ -226,12 +227,12 @@ PE-4 and PE-5 are timed on a phone, not here. A model that passes these budgets 
 
 The phone shows the plant on the viewer's blue-green. Slides and the panel see the rendered clip, which shows the plant in its place.
 
-### 9.1 Reef set (collection `Reef`, never exported)
+### 9.1 Aquarium cross-section set (collection `Reef`, never exported)
 
-- `ReefFlat`: a broad sand flat that hides the mound's cut side. Uses `SeaSand`.
-- `ReefWater`: a cylindrical wall facing inward, shallow water gradient. Uses `SeaWater`. Not `#1E8C98`.
-- Lighting: soft overhead sun, cool fill, dark sea-green world. No studio grey.
-- Habitat wording comes from the record. A species described on "shallow reef flats" gets a reef flat. A species "next to mangrove forest" (*Enhalus*) does not get a mangrove model unless the owner asks; the record supports the sentence, not the set.
+- `ReefTray`: a dark slate aquarium plinth beneath the cutaway sand bed.
+- `ReefWater`: a curved deep-water aquarium backdrop with subtle overhead light shafts. Not `#1E8C98`.
+- Lighting: top-down aquarium sun light plus a gentle frontal cutaway fill light so both the green blades in the upper two-thirds and the pale rhizome/roots on the dark sediment cross-section in the lower third stand out clearly.
+- Habitat wording comes from the record. A species described on "shallow reef flats" gets a reef-sand bed. A species "next to mangrove forest" (*Enhalus*) does not get a mangrove model unless the owner asks; the record supports the sentence, not the set.
 
 ### 9.2 Camera and render
 
@@ -252,7 +253,7 @@ Each brief carries a three-sentence pitch built only from that species' record:
 2. What the clip teaches, from `growthProcess`.
 3. What to rotate to see, from the diagnostic features (section 11), and which number is a display choice.
 
-Reference (*C. rotundata*): "This is one species, not a scan of a Mati meadow. It starts as one bud; the buried rhizome extends, roots go down at each node, and new shoots rise until it is a patch. Turn it to see the thin edge and the flat veined face with a rounded tip; the leaf width is enlarged so the tip reads on a phone."
+Reference (*C. rotundata*): "This is one species, not a scan of a Mati meadow. It starts as one bud; the buried rhizome extends, a root grows down once that node is there, and new shoots rise until it is a patch. Turn it to see the thin edge and the flat veined face with a rounded tip. The strap is 4 mm wide, the top of the Seagrass-Watch range. How far the patch sits back from the cut is a display choice."
 
 ## 10. Done when
 
@@ -294,7 +295,7 @@ Every row quotes only `species.json`. "Must show" is what a viewer has to be abl
 
 - Record: flat strap leaves about 2-4 mm wide, rounded smooth tip; leaf-sheath scars form a continuous ring around the stem; smooth rhizome. Shallow reef flats. Spreads by the buried rhizome sending up new shoots.
 - Must show: rounded smooth tip with no serration; continuous scar ring; smooth rhizome; faint longitudinal veins.
-- Display choices: width 7 mm; 11 veins; 12 shoots; stem 20 mm.
+- Display choices: width 4 mm (top of the 2–4 mm range); 11 veins; 9 shoots on one rhizome with depth; sheath about 3.4 cm on a stem under 6 cm. Path depth is not a Mati measurement.
 - Look-alike: *C. serrulata* (wider, serrated tip).
 
 ### Cymodocea serrulata (`CS`)
@@ -379,9 +380,9 @@ Suggested, so each step reuses the last:
 
 | Item | State |
 |------|-------|
-| Blend | `assets/models-3d/cymodocea_rotundata.blend` (meadow + reef set). Studio-only copy: `cymodocea_rotundata_studio.blend`. October 10 backup: `cymodocea_rotundata_2026-10-10.blend1`. |
-| Phone file | `app/assets/models-3d/cymodocea_rotundata.glb`, copy in `assets/models-3d/`. 37,482 triangles, 36 leaves, 88 bones, clip `Grow`. |
-| Pitch clip | `assets/models-3d/cymodocea_rotundata_growth_render.mp4`, reef set. |
-| Old clip | `cymodocea_rotundata_growth.mp4` (19 Sep 2026) is from the previous model and is not used by the app while the `.glb` exists. Remove it from `app/assets/models-3d/` or replace it. |
+| Blend | Lesson meadow: `assets/models-3d/cymodocea_rotundata_lesson.blend`. Aquarium cutaway stays at `cymodocea_rotundata.blend`. Studio-only copy: `cymodocea_rotundata_studio.blend`. October 10 backup: `cymodocea_rotundata_2026-10-10.blend1`. |
+| Phone file | `app/assets/models-3d/cymodocea_rotundata.glb`, copy in `assets/models-3d/`. 39,122 triangles, 49 leaves, clip `Grow` (30 s). One rhizome crosses the bed, with 4 mm straps, a pale sheath, closed rings, and roots spreading from each node. No captions and no camera. |
+| Lesson clip | `assets/models-3d/cymodocea_rotundata_lesson.mp4`. Thirty seconds, 1920×1080, five beats. Does not replace the aquarium film or `cymodocea_rotundata_timelapse.mp4`. |
+| Pitch clip | `assets/models-3d/cymodocea_rotundata_growth_render.mp4`, copied to `assets/models-3d/cymodocea_rotundata_growth.mp4` and `app/assets/models-3d/cymodocea_rotundata_growth.mp4` via `rotundata_build/render.py`. |
 | Phone pass | Not done. FS-7 and PE-4 stay `unmeasured`. |
-| To fix in the split | Object prefix is hard-coded `CR_`; `publish()` writes one copy only; the render script is not in the repo. |
+| To fix in the split | Object prefix is hard-coded `CR_`. (`publish()` and `render.py` now live in `rotundata_build/` and write both copies.) |

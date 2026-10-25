@@ -15,6 +15,13 @@ void main() {
     expect(media.modelAsset, 'assets/models-3d/$slug.glb');
     expect(media.stillAsset, 'assets/images/species/$slug.png');
     expect(Model3dLibrary.statusLabel(media), 'Growth clip ready');
+    expect(media.lessonAsset, isNull);
+    expect(
+      Model3dLibrary.lessonFromAssets(slug, [
+        'assets/models-3d/${slug}_lesson.mp4',
+      ]),
+      'assets/models-3d/${slug}_lesson.mp4',
+    );
   });
 
   test('fromAssets is empty when nothing is bundled', () {

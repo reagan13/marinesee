@@ -47,9 +47,9 @@ These paths may already exist. They stay `unmeasured` until a tester does the pa
 | ID | What a phone pass still has to show |
 |----|--------------------------------------|
 | FS-6 | Each profile field shows cited text for common name, botanical characteristics, ecological role, conservation status, and habitat. The text is in `species.json`. A tester has not opened a profile on a phone. |
-| FS-7 | Rotate and zoom *Cymodocea rotundata*. The meadow `.glb` and the viewer controls are in the app. Play loops the growth from the bud. A tester has not done that on a phone. |
-| US-3 | Camera, gallery, library, and the *Cymodocea* rotate/zoom controls are in the app. A tester has not scored them on a phone. |
-| PE-4 | Time rotate and zoom on a physical phone. The *Cymodocea* meadow model is bundled. Lag has not been timed. |
+| FS-7 | Rotate and zoom *Cymodocea rotundata*. The patch `.glb` (a bed of shoots, spreading roots, clip `Grow`) and the viewer controls are in the app. Play loops the growth from the bud. A tester has not done that on a phone. |
+| US-3 | Camera, gallery, library, and the *Cymodocea* patch rotate/zoom controls are in the app. A tester has not scored them on a phone. |
+| PE-4 | Time rotate and zoom on a physical phone. The *Cymodocea* patch model is bundled. Lag has not been timed. |
 | US-1 | A first-time user can tell MarineSee identifies and teaches Mati seagrass. |
 | US-2 | After one short brief, the tester identifies a photo and opens the library with no step-by-step guide. |
 | US-5 | The tester agrees the text, colors, and layout are comfortable on a phone. |

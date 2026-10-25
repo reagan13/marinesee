@@ -82,7 +82,8 @@ def rebuild_meshes(cfg=CONFIG):
         i = emp.name[len("CR_Shoot_"):]
         origin, stem, side, _fwd = rig.shoot_axes(emp)
         sides[i] = side
-        _o, ok = _put("Shoot_" + i, emp, lambda: shoot.shoot_mesh("ShootMesh_" + i, origin, stem, side, cfg),
+        stem_sides, arc = (8, 8) if cfg.get("variant") == "lesson" else (10, 12)
+        _o, ok = _put("Shoot_" + i, emp, lambda s=stem_sides, a=arc: shoot.shoot_mesh("ShootMesh_" + i, origin, stem, side, cfg, s, a),
                       [mats["stem"], mats["sheath"], mats["scar"]], _whole("shoot_" + i), meadow, arm)
         built += ok
 
@@ -93,16 +94,18 @@ def rebuild_meshes(cfg=CONFIG):
         t = float(curve.get("cr_thickness_m", thickness))
         pts = dense_points(curve)
         mat = mats["young"] if curve.get("cr_young") else mats["leaf"]
+        rings = 4 if cfg.get("variant") == "lesson" else 8
         _o, ok = _put("Leaf_" + key, curve,
-                      lambda: geometry.leaf_mesh("LeafMesh_" + key, pts, w, t, veins, side, float(curve.get("cr_twist", 0.0)),
-                                                 cfg["vein_groove_m"], cfg["leaf_crown_m"]),
+                      lambda n=rings: geometry.leaf_mesh("LeafMesh_" + key, pts, w, t, veins, side, float(curve.get("cr_twist", 0.0)),
+                                                 cfg["vein_groove_m"], cfg["leaf_crown_m"], body_rings=n),
                       [mat], _whole("leaf_" + key), meadow, arm)
         built += ok
 
     for curve in rig.objects_with_prefix("CR_Root_"):
         key = curve.name[len("CR_Root_"):]
         pts = dense_points(curve, 16)
-        _o, ok = _put("Root_" + key, curve, lambda: geometry.root_mesh("RootMesh_" + key, pts, cfg["root_radius_m"]),
+        root_rings = 4 if cfg.get("variant") == "lesson" else 6
+        _o, ok = _put("Root_" + key, curve, lambda n=root_rings: geometry.root_mesh("RootMesh_" + key, pts, cfg["root_radius_m"], rings=n),
                       [mats["root"]], _whole("root_" + key), meadow, arm)
         built += ok
     print("rebuild_meshes: refreshed", built, "meshes")

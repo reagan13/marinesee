@@ -1,8 +1,13 @@
 """publish(): write the phone .glb from Meadow and CR_Armature only. Curves stay in the blend."""
 
+import os
+import shutil
+
 import bpy
 
 from .config import GLB_PATH
+
+ASSETS_GLB_PATH = r"d:\pepot\marinesee\assets\models-3d\cymodocea_rotundata.glb"
 
 
 def publish(path=GLB_PATH):
@@ -30,6 +35,10 @@ def publish(path=GLB_PATH):
     }
     kwargs = {k: v for k, v in wanted.items() if k in names}
     op(filepath=path, **kwargs)
+    # The phone export is mirrored into assets/. A named variant (realistic, aquarium)
+    # keeps its own file and does not replace that mirror.
+    if os.path.abspath(path) == os.path.abspath(GLB_PATH):
+        shutil.copy2(path, ASSETS_GLB_PATH)
     curves = sum(1 for o in bpy.data.objects if o.type == "CURVE" and o.name.startswith("CR_"))
-    print("exported", path, "authoring curves still in file:", curves)
+    print("exported", path, "and", ASSETS_GLB_PATH, "authoring curves still in file:", curves)
     return curves

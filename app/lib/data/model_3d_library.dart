@@ -6,15 +6,18 @@ class SpeciesMedia {
     this.videoAsset,
     this.modelAsset,
     this.stillAsset,
+    this.lessonAsset,
   });
 
   final String? videoAsset;
   final String? modelAsset;
   final String? stillAsset;
+  final String? lessonAsset;
 
   bool get hasVideo => videoAsset != null;
   bool get hasModel => modelAsset != null;
   bool get hasStill => stillAsset != null;
+  bool get hasLesson => lessonAsset != null;
 }
 
 /// Resolves dropped 3D files from the Flutter asset bundle.
@@ -51,6 +54,15 @@ class Model3dLibrary {
     };
   }
 
+  /// Presentation clip, separate from the rotatable model.
+  static String? lessonFromAssets(String slug, Iterable<String> assets) {
+    final path = '$videoFolder${slug}_lesson.mp4';
+    if (assets.contains(path)) {
+      return path;
+    }
+    return null;
+  }
+
   static SpeciesMedia fromAssets(String slug, Iterable<String> assets) {
     final listed = assets.toSet();
     final video = '$videoFolder${slug}_growth.mp4';
@@ -67,6 +79,7 @@ class Model3dLibrary {
       videoAsset: listed.contains(video) ? video : null,
       modelAsset: listed.contains(model) ? model : null,
       stillAsset: still,
+      lessonAsset: lessonFromAssets(slug, listed),
     );
   }
 

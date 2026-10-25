@@ -27,9 +27,9 @@ if HERE not in sys.path:
 for _name in [n for n in sys.modules if n == "rotundata_build" or n.startswith("rotundata_build.")]:
     del sys.modules[_name]
 
-from rotundata_build import checks, grow, layout, meshes, reef, scene  # noqa: E402
+from rotundata_build import captions, checks, grow, layout, meshes, realism, reef, scene  # noqa: E402
 from rotundata_build import publish as _publish  # noqa: E402
-from rotundata_build.config import BLEND_PATH  # noqa: E402
+from rotundata_build import config  # noqa: E402
 
 
 def rebuild_meshes():
@@ -40,10 +40,11 @@ def publish():
     return _publish.publish()
 
 
-def build(reset=None, overwrite_anim=None, do_publish=None):
+def build(reset=None, overwrite_anim=None, do_publish=None, blend_path=None):
     reset = RESET if reset is None else reset
     overwrite_anim = OVERWRITE_ANIM if overwrite_anim is None else overwrite_anim
     do_publish = DO_PUBLISH if do_publish is None else do_publish
+    blend_path = blend_path or config.BLEND_PATH
     if bpy.context.object and bpy.context.object.mode != "OBJECT":
         bpy.ops.object.mode_set(mode="OBJECT")
     scene.setup_scene()
@@ -53,16 +54,23 @@ def build(reset=None, overwrite_anim=None, do_publish=None):
         overwrite_anim = True
     rebuild_meshes()
     reef.build_presentation()
+    variant = config.CONFIG.get("variant")
+    if variant == "realistic":
+        realism.apply()
+        captions.build(int(config.CONFIG.get("frame_end", 1800)))
+    elif variant == "lesson":
+        realism.lesson_shade()
+        captions.build(int(config.CONFIG.get("frame_end", 1800)))
     arm = bpy.data.objects["CR_Armature"]
     if overwrite_anim or bpy.data.actions.get("Grow") is None:
         grow.animate(arm)
     report = checks.validate()
     bpy.context.scene.frame_set(300)
-    bpy.ops.wm.save_as_mainfile(filepath=BLEND_PATH)
-    print("saved", BLEND_PATH)
+    bpy.ops.wm.save_as_mainfile(filepath=blend_path)
+    print("saved", blend_path)
     if do_publish:
         publish()
-        bpy.ops.wm.save_as_mainfile(filepath=BLEND_PATH)
+        bpy.ops.wm.save_as_mainfile(filepath=blend_path)
     return report
 
 
