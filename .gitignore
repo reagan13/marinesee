@@ -29,6 +29,7 @@ assets/models-3d/_probe/
 assets/models-3d/_source/
 *.raw
 ml/artifacts/**/*.joblib
+!ml/artifacts/v1/svm_seagrass_v1.joblib
 ml/artifacts/**/*.pkl
 ml/artifacts/**/*.onnx
 ml/artifacts/**/*.pt
